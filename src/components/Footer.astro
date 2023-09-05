@@ -1,0 +1,18 @@
+---
+---
+
+<footer class="text-center p-2 hover:text-white">
+  <p> made with ☕ by Jose Ávila <span class="year"> </span> - code is poetry</p>
+</footer>
+
+<script>
+  const currentDate = new Date()
+  const currentYear = currentDate.getFullYear()
+  const yearContainer = document.querySelector('span.year')
+
+  console.log(yearContainer?.textContent, currentYear)
+  if(yearContainer) {
+    yearContainer.textContent = currentYear.toString()
+  }
+
+</script>
