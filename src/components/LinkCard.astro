@@ -1,0 +1,22 @@
+---
+interface Props {
+  link?: string
+  color?: string
+  cols?: string
+  rows?: string
+}
+
+const { link, color, cols, rows } = Astro.props
+---
+
+<section
+  class:list={[
+    "flex flex-col square rounded-xl xs:h-auto xs:square",
+    color || "bg-white",
+    rows,
+    cols || "col-span-1",
+  ]}
+>
+  <a href={link || "#"}></a>
+  <slot> "inserta algo aqui pelmazo!"</slot>
+</section>

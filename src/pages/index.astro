@@ -4,15 +4,20 @@ import About from "../components/About.astro"
 import ThemeSwitch from "../components/ThemeSwitch.astro"
 import Language from "../components/Language.astro"
 import BasicInfo from "../components/BasicInfo.astro"
+import LinkCard from "../components/LinkCard.astro"
 ---
 
 <Layout title="Jose Avila - Software Developer 💻">
-  <main
-    class="container grid max-w-[1440px] grid-cols-9 gap-2 p-2 mx-auto md:grid-cols-12"
-  >
-    <About />
-    <Language />
-    <ThemeSwitch />
-    <BasicInfo />
+  <main class="flex flex-col m-5">
+    <div
+      class="container grid grid-cols-3 gap-2 mx-auto my-5 md:grid-cols-4 md:gap-4 xl:px-20"
+    >
+      <About />
+      <Language />
+      <ThemeSwitch />
+      <BasicInfo />
+      <BasicInfo />
+      <LinkCard />
+    </div>
   </main>
 </Layout>
