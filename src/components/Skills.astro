@@ -1,0 +1,49 @@
+---
+import { Image } from "astro:assets"
+
+import Js from "../assets/images/javascript.svg"
+import Ts from "../assets/images/typescript.svg"
+import Php from "../assets/images/php.svg"
+import React from "../assets/images/react.svg"
+import Next from "../assets/images/nextjs.svg"
+import Nodejs from "../assets/images/nodejs.svg"
+import Mongo from "../assets/images/mongoDB.svg"
+import Mysql from "../assets/images/mysql.svg"
+import Firebase from "../assets/images/firebase.svg"
+import singleSpa from "../assets/images/single_spa.svg"
+import Astrojs from "../assets/images/astro.svg"
+import Flutter from "../assets/images/flutter.svg"
+import Angular from "../assets/images/angular.svg"
+import Tensorflow from "../assets/images/tensorflow.svg"
+import Adobe from "../assets/images/adobe.svg"
+import Figma from "../assets/images/figma.svg"
+
+const skillz = [
+  { name: "Js", icon: Js },
+  { name: "Ts", icon: Ts },
+  { name: "php", icon: Php },
+  { name: "React", icon: React },
+  { name: "Next", icon: Next },
+  { name: "Nodejs", icon: Nodejs },
+  { name: "Mongo", icon: Mongo },
+  { name: "Mysql", icon: Mysql },
+  { name: "Firebase", icon: Firebase },
+  { name: "singleSpa", icon: singleSpa },
+  { name: "Astrojs", icon: Astrojs },
+  { name: "Flutter", icon: Flutter },
+  { name: "Angular", icon: Angular },
+  { name: "Tensorflow", icon: Tensorflow },
+  { name: "Adobe", icon: Adobe },
+  { name: "Figma", icon: Figma },
+]
+---
+
+<section
+  class="basic-info flex bg-[#2D9CDB] rounded-xl col-span-1 square xs:h-auto xs:square overflow-clip p-4"
+>
+  <div
+    class="grid gap-2 justify-center mx-auto md:gap-5 grid-cols-3 md:grid-cols-4"
+  >
+    {skillz.map((item, index) => <Image alt={item.name} src={item.icon} />)}
+  </div>
+</section>

@@ -1,0 +1,35 @@
+---
+import { Image } from "astro:assets"
+
+import Cover from "../assets/images/albumcover.png"
+import Player from "../assets/images/mini-player.svg"
+import Spotify from "../assets/images/spotify.svg"
+---
+
+<section
+  class="player-container flex flex-col justify-between relative overflow-clip bg-[#000000] text-white p-8 h-80 md:h-auto rounded-xl col-span-3 md:col-span-2 md:row-span-2"
+>
+  <Image alt="spotify" src={Spotify} class="absolute top-6 left-6" />
+  <div class="player flex flex-col align-center gap-4">
+    <h2 class="text-3xl font-bold mt-28">Recently played</h2>
+    <div class="flex gap-4 w-[80%]">
+      <Image alt="album cover" src={Cover} class="w-20 h-20" />
+
+      <div class="player-info">
+        <p class="text-text">
+          <strong class="">Arrows</strong>
+          <br /> by <span>Vampire weekend</span>
+        </p>
+        <figure>
+          <Image alt="player" src={Player} />
+        </figure>
+      </div>
+    </div>
+    <Image
+      alt="album cover"
+      src={Cover}
+      class="absolute -top-1/2 -left-1 w-[120%] opacity-5 blur-sm"
+      draggable="false"
+    />
+  </div>
+</section>
