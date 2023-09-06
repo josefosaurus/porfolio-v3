@@ -3,7 +3,20 @@
 @tailwind utilities;
 
 @layer base {
+  h1 {
+    font-size: 2.25rem;
+  }
+  h2 {
+    font-size: 1.25rem;
+  }
   .square {
     aspect-ratio: 1/1;
+    padding: 1rem;
+  }
+  .lab {
+    background-image: url("./src/assets/images/matrix_bg.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: luminosity;
   }
 }

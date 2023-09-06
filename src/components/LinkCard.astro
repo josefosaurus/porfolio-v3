@@ -1,22 +1,30 @@
 ---
+import { Image } from 'astro:assets'
+import Link from '../assets/images/link.svg'
 interface Props {
   link?: string
   color?: string
   cols?: string
   rows?: string
+  square?: boolean
+  custom?: string
 }
 
-const { link, color, cols, rows } = Astro.props
+const { link, color, cols, rows, square=true, custom } = Astro.props
 ---
 
 <section
   class:list={[
-    "flex flex-col square rounded-xl xs:h-auto xs:square",
+    "relative flex flex-col items-center justify-center rounded-xl xs:h-auto relative overflow-clip p-4",
     color || "bg-white",
     rows,
     cols || "col-span-1",
+    square && "square xs:square",
+    custom
   ]}
 >
-  <a href={link || "#"}></a>
-  <slot> "inserta algo aqui pelmazo!"</slot>
+  <a href={link || "#"}>
+    <Image alt="link" src={Link} class="absolute w-6 h-6 top-2 right-2" />
+    <slot> "inserta algo aqui pelmazo!"</slot>
+  </a>
 </section>

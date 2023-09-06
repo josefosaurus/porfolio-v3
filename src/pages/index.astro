@@ -1,10 +1,15 @@
 ---
+import { Image } from "astro:assets"
 import Layout from "../layouts/Layout.astro"
 import About from "../components/About.astro"
 import ThemeSwitch from "../components/ThemeSwitch.astro"
 import Language from "../components/Language.astro"
 import BasicInfo from "../components/BasicInfo.astro"
 import LinkCard from "../components/LinkCard.astro"
+
+import LinkedIn from "../assets/images/linkedIn.svg"
+import AlmostMe from "../assets/images/almost_me.gif"
+import Octocat from "../assets/images/octocat.gif"
 ---
 
 <Layout title="Jose Avila - Software Developer 💻">
@@ -16,7 +21,35 @@ import LinkCard from "../components/LinkCard.astro"
       <Language />
       <ThemeSwitch />
       <BasicInfo />
-      <BasicInfo />
+      <LinkCard>
+        <div class="flex flex-col justify-center  items-center">
+          <Image alt="linkedin" src={LinkedIn} class="max-w-14 max-h-14"/>
+          <p>Profile</p>
+        </div>
+      </LinkCard>
+      <LinkCard cols="col-span-2" rows="row-span-1" color="bg-black" square={false} custom="lab">
+        <div class="flex items-center">
+          <Image src={AlmostMe} alt="code error" class="max-w-[10rem]"/>
+          <div>
+            <h2 class="text-2xl font-bold text-white">Lab</h2>
+            <p class="text-white">
+              Here you can view some of my personal work and experiments, and why not?
+              some fails
+            </p>
+
+          </div>
+
+        </div>
+      </LinkCard>
+      <LinkCard cols="col-span-2" square={false}>
+        <div>
+          <content class="text-black z-10">
+            <h2 class="text-2xl">Code repository</h2>
+            <p>I’ve got (all most) all my code for free view in case if you want to get deep on my work as developer</p>
+          </content>
+          <Image alt="octocat" src={Octocat} class="absolute right-0 bottom-0 z-0 w-52 max-[258px]:" />
+        </div>
+      </LinkCard>
       <LinkCard />
     </div>
   </main>
