@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets"
+
+import Pocket from "../assets/images/pocket.svg"
+import Thumb from "../assets/images/thumb.png"
+---
+
+<section
+  class="education bg-white relative flex flex-col rounded-xl xs:square col-span-1 row-span-1 md:col-span-2 overflow-clip p-4"
+>
+  <div
+    class="flex justify-center items-center md:justify-between h-[100%] md:h-auto w-[100%] flex-col md:flex-row"
+  >
+    <h2 class="text-xs md:text-xl font-bold text-background order-2">
+      Latest reading
+    </h2>
+    <Image src={Pocket} alt="code error" class="w-8 md:w-[2rem] order-1" />
+  </div>
+  <ul class="flex flex-col justify-between py-4 hidden md:block">
+    <li class="flex justify-between border-b mb-2">
+      <p>
+        <a href=""
+          ><strong class="hover:underline"
+            >5 latin grooves every drummer should know</strong
+          ></a
+        >
+        <br />
+         Youtube.be - 11min
+      </p>
+      <a href=""> <Image alt="article thumb" src={Thumb} /></a>
+    </li>
+    <li class="flex justify-between mb-2">
+      <p>
+        <a href=""
+          ><strong class="hover:underline"
+            >5 latin grooves every drummer should know</strong
+          ></a
+        >
+        <br />
+         Youtube.be - 11min
+      </p>
+      <a href=""><Image alt="article thumb" src={Thumb} /></a>
+    </li>
+  </ul>
+</section>

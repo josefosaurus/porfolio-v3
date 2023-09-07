@@ -22,4 +22,11 @@
     background-size: cover;
     background-blend-mode: luminosity;
   }
+  .weather-night {
+    background: radial-gradient(
+      114.84% 135.62% at 2.19% 5.35%,
+      #2d2c5b 16.67%,
+      #0a0a35 62.5%
+    );
+  }
 }

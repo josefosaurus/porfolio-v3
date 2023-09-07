@@ -1,0 +1,21 @@
+---
+import { Image } from "astro:assets"
+
+import Night from "../assets/images/weather.png"
+---
+
+<section
+  class="weather-night relative flex flex-col items-center justify-center rounded-xl xs:h-auto col-span-2 row-span-1 overflow-clip p-4"
+>
+  <div class="flex justify-between w-[60%]">
+    <Image src={Night} alt="code error" class="w-14 md:w-[10rem]" />
+    <div>
+      <h2 class="text-2xl md:text-6xl font-bold text-white">11°</h2>
+      <p class="text-white text-xs md:text-base">Santiago, CL</p>
+      <p>
+        Cloudy <br />
+         9:00 pm
+      </p>
+    </div>
+  </div>
+</section>

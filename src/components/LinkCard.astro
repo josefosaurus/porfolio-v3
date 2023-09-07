@@ -1,6 +1,6 @@
 ---
-import { Image } from 'astro:assets'
-import Link from '../assets/images/link.svg'
+import { Image } from "astro:assets"
+import Link from "../assets/images/link.svg"
 interface Props {
   link?: string
   color?: string
@@ -10,17 +10,17 @@ interface Props {
   custom?: string
 }
 
-const { link, color, cols, rows, square=true, custom } = Astro.props
+const { link, color, cols, rows, square = true, custom } = Astro.props
 ---
 
 <section
   class:list={[
-    "relative flex flex-col items-center justify-center rounded-xl xs:h-auto relative overflow-clip p-4",
+    "relative flex flex-col items-center justify-center rounded-xl xs:h-auto relative overflow-clip p-1 md:p-4",
     color || "bg-white",
     rows,
     cols || "col-span-1",
     square && "square xs:square",
-    custom
+    custom,
   ]}
 >
   <a href={link || "#"}>

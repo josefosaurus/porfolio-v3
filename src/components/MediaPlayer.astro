@@ -7,16 +7,22 @@ import Spotify from "../assets/images/spotify.svg"
 ---
 
 <section
-  class="player-container flex flex-col justify-between relative overflow-clip bg-[#000000] text-white p-8 h-80 md:h-auto rounded-xl col-span-3 md:col-span-2 md:row-span-2"
+  class="player-container flex flex-col justify-between relative overflow-clip bg-[#000000] text-white p-2 md:p-4 rounded-xl col-span-2 md:col-span-2 row-span-1 md:row-span-1"
 >
-  <Image alt="spotify" src={Spotify} class="absolute top-6 left-6" />
+  <Image
+    alt="spotify"
+    src={Spotify}
+    class="absolute top-2 left-2 md:top-6 md:left-6"
+  />
   <div class="player flex flex-col align-center gap-4">
-    <h2 class="text-3xl font-bold mt-28">Recently played</h2>
-    <div class="flex gap-4 w-[80%]">
-      <Image alt="album cover" src={Cover} class="w-20 h-20" />
+    <h2 class="text-xl md:text-3xl font-bold ml-20 md:ml-0 mt-2 md:mt-20">
+      Recently played
+    </h2>
+    <div class="flex items-center gap-4 w-[100%] md:w-[80%]">
+      <Image alt="album cover" src={Cover} class="w-10 h-10 md:w-20 md:h-20" />
 
       <div class="player-info">
-        <p class="text-text">
+        <p class="text-text text-xs md:text-base">
           <strong class="">Arrows</strong>
           <br /> by <span>Vampire weekend</span>
         </p>
