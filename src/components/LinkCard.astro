@@ -24,7 +24,11 @@ const { link, color, cols, rows, square = true, custom } = Astro.props
   ]}
 >
   <a href={link || "#"}>
-    <Image alt="link" src={Link} class="absolute w-6 h-6 top-2 right-2" />
+    <Image
+      alt="link"
+      src={Link}
+      class="absolute w-4 md:w-6 h-4 md:h-6 top-2 right-2"
+    />
     <slot> "inserta algo aqui pelmazo!"</slot>
   </a>
 </section>

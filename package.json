@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/tailwind": "^5.0.0",
     "astro": "^3.0.7",
+    "convert-units": "^2.3.4",
     "tailwindcss": "^3.3.3"
   }
 }
