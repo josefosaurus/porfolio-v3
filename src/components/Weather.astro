@@ -46,7 +46,7 @@ const currentMinutes = currentDate.getMinutes()
       <p class="text-sm md:text-base">
         {currentWeather.description}
         <br />
-        {`${currentHour}:${currentMinutes}`}
+        {`${currentHour}:${currentMinutes < 10 ? 0 : ""}${currentMinutes}`}
       </p>
     </div>
   </div>

@@ -1,24 +1,29 @@
 ---
 import { Image } from "astro:assets"
 import AudioPlayer from "./player/AudioPlayer.astro"
+import { getToken } from "./player/spotifyAPI"
 
 import Cover from "../assets/images/albumcover.png"
 import Spotify from "../assets/images/spotify.svg"
 
-const token =
-  "BQDl1Ljdtkg1KT1YeAS0lCfZW_VdKQ7y6hHfxOyNYnkcMNjeUvI_MyA-0IvFDVz6rA2D0bpR8Gx94YV1tHKfCafR7LO3xHo0HcTBM0qenP0ikvOVkxI36lzKuNAg_UX_fSURH91edQppefsc7QbCXon98F5w2OSEOuszmwgEFLzolik8pU5U-etNYWH1TNPTTA"
-const url = "https://api.spotify.com/v1/me/player/recently-played?limit=1"
+const clientId = import.meta.env.CLIENT_ID
+const clientSecret = import.meta.env.CLIENT_SECRET
+const apiURL = import.meta.env.API_URL
+const authToklien = await getToken(clientId, clientSecret)
+
 const requestOptions = {
   method: "GET",
   headers: {
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${authToklien}`,
     "Content-Type": "application/json",
   },
 }
 
-const response = await fetch(url, requestOptions)
+const response = await fetch(apiURL, requestOptions)
 const data = await response.json()
-const currentTrack = data?.items[0].track
+const currentTrack = (await data?.items) && data.items[0].track
+
+console.log("🔥", { data, requestOptions })
 ---
 
 <section
@@ -35,26 +40,26 @@ const currentTrack = data?.items[0].track
     </h2>
     <div class="flex items-center gap-4 w-[100%] md:w-[80%] z-10">
       <Image
-        alt={currentTrack.album.name}
-        height={currentTrack.album.images[2].height}
-        width={currentTrack.album.images[2].width}
-        src={currentTrack.album.images[2].url || Cover}
+        alt={currentTrack?.album.name || "album name"}
+        height={currentTrack?.album.images[2].height || 50}
+        width={currentTrack?.album.images[2].width || 50}
+        src={currentTrack?.album.images[2].url || Cover}
         class="w-10 h-10 md:w-20 md:h-20"
       />
 
       <div class="player-info">
         <p class="text-text text-xs md:text-base">
-          <strong class="">{currentTrack.name}</strong>
-          <br /> by <span>{currentTrack.artists[0].name}</span>
+          <strong class="">{currentTrack?.name || "album name"}</strong>
+          <br /> by <span>{currentTrack?.artists[0].name || "Artist"}</span>
         </p>
         <figure></figure>
       </div>
     </div>
     <Image
-      alt={currentTrack.album.name}
-      height={currentTrack.album.images[1].height}
-      width={currentTrack.album.images[2].width}
-      src={currentTrack.album.images[2].url || Cover}
+      alt={currentTrack?.album.name || "💿"}
+      height={currentTrack?.album.images[1].height || 300}
+      width={currentTrack?.album.images[2].width || 300}
+      src={currentTrack?.album.images[2].url || Cover}
       class="absolute -top-1/2 -left-1 w-[120%] opacity-[0.2] z-0 blur-sm"
       draggable="false"
     />
