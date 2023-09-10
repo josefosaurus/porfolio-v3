@@ -1,8 +1,13 @@
 ---
 import { Image } from "astro:assets"
+import { getArticles } from "./readingList/pocketApi.ts"
 
 import Pocket from "../assets/images/pocket.svg"
 import Thumb from "../assets/images/thumb.png"
+
+const articles = await getArticles()
+
+console.log("🌞", articles)
 ---
 
 <section
@@ -17,29 +22,26 @@ import Thumb from "../assets/images/thumb.png"
     <Image src={Pocket} alt="code error" class="w-8 md:w-[2rem] order-1" />
   </div>
   <ul class="flex flex-col justify-between py-4 hidden md:block">
-    <li class="flex justify-between border-b mb-2">
-      <p>
-        <a href=""
-          ><strong class="hover:underline"
-            >5 latin grooves every drummer should know</strong
-          ></a
-        >
-        <br />
-         Youtube.be - 11min
-      </p>
-      <a href=""> <Image alt="article thumb" src={Thumb} /></a>
-    </li>
-    <li class="flex justify-between mb-2">
-      <p>
-        <a href=""
-          ><strong class="hover:underline"
-            >5 latin grooves every drummer should know</strong
-          ></a
-        >
-        <br />
-         Youtube.be - 11min
-      </p>
-      <a href=""><Image alt="article thumb" src={Thumb} /></a>
-    </li>
+    {
+      articles?.length >= 1 ? (
+        articles.map((item) => (
+          <li class="flex justify-between border-b mb-2">
+            <p>
+              <a href="">
+                <strong class="hover:underline">{item.resolved_title}</strong>
+              </a>
+              <br />
+              `${item.domain_metadata.name} - ${item.listen_duration_estimate}
+              mins`
+            </p>
+            <a href="">
+              <Image alt="article thumb" src={Thumb} />
+            </a>
+          </li>
+        ))
+      ) : (
+        <h2 class="text-center py-4">🫠 Nothing here</h2>
+      )
+    }
   </ul>
 </section>
