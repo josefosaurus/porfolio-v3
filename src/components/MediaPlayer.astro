@@ -1,20 +1,19 @@
 ---
 import { Image } from "astro:assets"
-import AudioPlayer from "./player/AudioPlayer.astro"
-import { getToken } from "./player/spotifyAPI"
+// import AudioPlayer from "./player/AudioPlayer.astro"
 
 import Cover from "../assets/images/albumcover.png"
 import Spotify from "../assets/images/spotify.svg"
 
-const clientId = import.meta.env.CLIENT_ID
-const clientSecret = import.meta.env.CLIENT_SECRET
 const apiURL = import.meta.env.API_URL
-const authToklien = await getToken(clientId, clientSecret)
+const authTolkien =
+  "BQAz2Da4UDsx54v142MCduYvzhf0aRbFVfQvmaaysUzAEDyCdxkvPnTdubwrQuvovVg4JBjiRB_FR4WI9dHuqcq4qXTFZiKl6p97uAgoOw6bgOrEUzNbKkpMRgyMp9W19wSqw7wN2PUUjpypVIFGz1zgU4ufU-SXmVIg38r0ZH5v5hevr4i5"
 
+const token = localStorage.getItem("accesToken")
 const requestOptions = {
   method: "GET",
   headers: {
-    Authorization: `Bearer ${authToklien}`,
+    Authorization: `Bearer ${token}`,
     "Content-Type": "application/json",
   },
 }
@@ -22,8 +21,6 @@ const requestOptions = {
 const response = await fetch(apiURL, requestOptions)
 const data = await response.json()
 const currentTrack = (await data?.items) && data.items[0].track
-
-// console.log("🔥", { data, requestOptions })
 ---
 
 <section
@@ -35,7 +32,7 @@ const currentTrack = (await data?.items) && data.items[0].track
     class="absolute top-2 left-2 md:top-6 md:left-6 z-10"
   />
   <div class="player flex flex-col align-center gap-4">
-    <h2 class="text-xl md:text-3xl font-bold ml-20 md:ml-0 mt-2 md:mt-20 z-10">
+    <h2 class="text-xl md:text-3xl font-bold ml-10 md:ml-0 mt-0 md:mt-20 z-10">
       Recently played
     </h2>
     <div class="flex items-center gap-4 w-[100%] md:w-[80%] z-10">
@@ -60,8 +57,14 @@ const currentTrack = (await data?.items) && data.items[0].track
       height={currentTrack?.album.images[1].height || 300}
       width={currentTrack?.album.images[2].width || 300}
       src={currentTrack?.album.images[2].url || Cover}
-      class="absolute -top-1/2 -left-1 w-[120%] opacity-[0.2] z-0 blur-sm"
+      class="absolute -top-1/2 -left-0 w-[120%] opacity-[0.2] z-0 blur-sm"
       draggable="false"
     />
   </div>
 </section>
+
+<script>
+  import { getAuth } from "../services/player/spotifyAPI"
+  const clientId = "dd132524a4e445b29dead907cf2a26b6"
+  getAuth(clientId)
+</script>

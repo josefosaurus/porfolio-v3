@@ -1,41 +1,50 @@
 ---
 import { Image } from "astro:assets"
-import { getArticles } from "./readingList/pocketApi.ts"
+import { getArticles } from "../services/readingList/pocketApi"
 
 import Pocket from "../assets/images/pocket.svg"
 import Thumb from "../assets/images/thumb.png"
 
-const articles = await getArticles()
-
-console.log("🌞", articles)
+// const articles = await getArticles()
+const articles: [] = []
 ---
 
 <section
   class="education bg-white relative flex flex-col rounded-xl xs:square col-span-1 row-span-1 md:col-span-2 overflow-clip p-4"
 >
-  <div
+  <a
+    href="https://getpocket.com/"
     class="flex justify-center items-center md:justify-between h-[100%] md:h-auto w-[100%] flex-col md:flex-row"
   >
     <h2 class="text-xs md:text-xl font-bold text-background order-2">
       Latest reading
     </h2>
-    <Image src={Pocket} alt="code error" class="w-8 md:w-[2rem] order-1" />
-  </div>
-  <ul class="flex flex-col justify-between py-4 hidden md:block">
+    <Image
+      src={Pocket}
+      alt="code error"
+      class="w-8 md:w-[2rem] order-1 mb-6 md:mb-0"
+    />
+  </a>
+  <ul class="flex-col justify-between py-4 hidden md:flex">
     {
       articles?.length >= 1 ? (
         articles.map((item) => (
           <li class="flex justify-between border-b mb-2">
             <p>
-              <a href="">
+              <a href={item.resolved_url}>
                 <strong class="hover:underline">{item.resolved_title}</strong>
               </a>
               <br />
-              `${item.domain_metadata.name} - ${item.listen_duration_estimate}
-              mins`
+              {item.domain_metadata?.name} -{item.listen_duration_estimate}
+              mins
             </p>
-            <a href="">
-              <Image alt="article thumb" src={Thumb} />
+            <a href={item.resolved_url}>
+              <Image
+                alt="article thumb"
+                src={item.top_image_url || Thumb}
+                width={50}
+                height={50}
+              />
             </a>
           </li>
         ))
