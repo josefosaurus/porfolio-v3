@@ -9,6 +9,12 @@ module.exports = {
         accent: "#50BF97",
         text: "#828282",
       },
+      keyframes: {
+        wiggle: {
+          "0%, 100%": { transform: "rotate(-3deg)" },
+          "50%": { transform: "rotate(3deg)" },
+        },
+      },
     },
     plugins: [],
   },
