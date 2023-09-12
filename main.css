@@ -47,4 +47,89 @@
   .yellow {
     fill: #ffeb3b;
   }
+  /* GRAPH */
+  #waves {
+    display: flex;
+    align-items: center;
+  }
+
+  .stroke {
+    display: block;
+    position: relative;
+    background: #50bf97;
+    height: 10px;
+    width: 8px;
+    border-radius: 50px;
+    margin: 0 5px;
+    animation: animate 1.2s linear infinite;
+    animation-play-state: paused;
+  }
+
+  @keyframes animate {
+    50% {
+      height: 30%;
+    }
+    100% {
+      height: 100%;
+    }
+  }
+
+  .stroke:nth-child(1) {
+    animation-delay: 0s;
+  }
+  .stroke:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+  .stroke:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+  .stroke:nth-child(4) {
+    animation-delay: 0.9s;
+  }
+  .stroke:nth-child(5) {
+    animation-delay: 0.6s;
+  }
+  .stroke:nth-child(6) {
+    animation-delay: 0.3s;
+  }
+  .stroke:nth-child(7) {
+    animation-delay: 0s;
+  }
+
+  /* Play button */
+  .button-wrapper {
+    width: 1rem;
+    height: 1rem;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    background: none;
+    margin-right: 1rem;
+    transform: rotate(-180deg);
+    transition: transform 0.3s ease;
+  }
+  .button-wrapper .left,
+  .button-wrapper .right {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: none;
+    transition: clip-path 0.3s ease;
+  }
+  .button-wrapper .left {
+    clip-path: polygon(30% 0, 85% 0%, 85% 100%, 30% 100%);
+  }
+  .button-wrapper .right {
+    clip-path: polygon(15% 0, 70% 0, 70% 100%, 15% 100%);
+  }
+  .button-wrapper.active {
+    transform: rotate(0deg);
+  }
+  .button-wrapper.active .left {
+    clip-path: polygon(30% 0, 102% 20%, 102% 80%, 30% 100%);
+  }
+  .button-wrapper.active .right {
+    clip-path: polygon(-5% 18%, 100% 50%, 100% 50%, -5% 82%);
+  }
 }

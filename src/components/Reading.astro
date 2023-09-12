@@ -5,12 +5,12 @@ import { getArticles } from "../services/readingList/pocketApi"
 import Pocket from "../assets/images/pocket.svg"
 import Thumb from "../assets/images/thumb.png"
 
-// const articles = await getArticles()
+// const articles = await getArticles()  //TODO: implementar el oauth de pocket para el uso de la api
 const articles: [] = []
 ---
 
 <section
-  class="education bg-white relative flex flex-col rounded-xl xs:square col-span-1 row-span-1 md:col-span-2 overflow-clip p-4"
+  class="education bg-white relative flex flex-col rounded-xl xs:square col-span-1 row-span-1 md:col-span-2 overflow-clip p-4 shadow-md hover:shadow-xl hover:scale-105 transition-all"
 >
   <a
     href="https://getpocket.com/"

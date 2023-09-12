@@ -24,16 +24,16 @@ import Reading from "@components/Reading.astro"
 ---
 
 <Layout title="Jose Avila - Software Developer 💻">
-  <main class="flex flex-col m-5">
+  <main class="flex flex-col m-2 md:m-5">
     <div
-      class="container grid grid-cols-3 gap-2 mx-auto my-5 md:grid-cols-4 md:gap-4 xl:px-20"
+      class="container grid grid-cols-3 gap-2 mx-auto md:my-5 md:grid-cols-4 md:gap-4 xl:px-20"
     >
       <About />
       <Language />
       <ThemeSwitch />
       <BasicInfo />
       <LinkCard
-        color="bg-[#E3E3E3]"
+        color="bg-[#FFFFFF] dark:bg-[#E3E3E3]"
         link="https://www.linkedin.com/in/avilajose/"
       >
         <div class="flex flex-col justify-center items-center">
@@ -51,6 +51,7 @@ import Reading from "@components/Reading.astro"
         color="bg-black"
         square={false}
         custom="lab"
+        link="/blog"
       >
         <div class="flex items-center">
           <Image src={AlmostMe} alt="code error" class="w-14 md:w-[10rem]" />
@@ -85,8 +86,11 @@ import Reading from "@components/Reading.astro"
       </LinkCard>
       <Skills />
       <Experience />
-      <AudioPlayer client:load />
-      <LinkCard color="bg-[#E3E3E3]" link="https://dribbble.com/josefosaurus">
+      <AudioPlayer client:only />
+      <LinkCard
+        color="bg-[#E9ADC4] dark:bg-[#E3E3E3]"
+        link="https://dribbble.com/josefosaurus"
+      >
         <div class="flex flex-col justify-center items-center">
           <Image
             alt="dribbble"
@@ -115,14 +119,14 @@ import Reading from "@components/Reading.astro"
         </div>
       </LinkCard>
       <Weather />
-      <LinkCard color="bg-accent" link="https://shorturl.at/ptFVW">
+      <LinkCard color="bg-accent" link="https://t.ly/DQbCl">
         <div class="flex flex-col justify-center items-center">
           <Image
             alt="linkedin"
             src={Download}
-            class="w-14 h-14 md:w-20 md:h-20 mb-6"
+            class="w-14 h-14 md:w-20 md:h-20 mb-6 animate-bounce"
           />
-          <p class="text-black text-base md:text-2xl">Download</p>
+          <p class="text-black text-base md:text-2xl">Resume</p>
         </div>
       </LinkCard>
       <Education />

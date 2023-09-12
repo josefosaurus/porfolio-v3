@@ -26,7 +26,7 @@ import Footer from "../components/Footer.astro"
     <link rel="stylesheet" href="main.css" />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="bg-slate-200 dark:bg-background text-text">
     <slot />
     <Footer />
   </body>
@@ -34,9 +34,7 @@ import Footer from "../components/Footer.astro"
 <style is:global>
   html {
     font-family: "Lato", sans-serif;
-    background: #1f1f1f;
     background-size: 224px;
-    color: #828282;
   }
   code {
     font-family:
@@ -50,3 +48,28 @@ import Footer from "../components/Footer.astro"
       monospace;
   }
 </style>
+
+<script>
+  import { theme } from "@store/store"
+
+  // Listen to changes in the store, and show/hide the dialog accordingly
+  theme.subscribe((colorTheme) => {
+    // const wrapper = document.getElementsByTagName("body")[0]
+    const wrapper = document.documentElement
+    wrapper.classList.remove("dark")
+    wrapper.classList.remove("light")
+    wrapper.classList.add(colorTheme)
+  })
+
+  if (
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.add("dark")
+    localStorage.setItem("theme", "dark")
+  } else {
+    document.documentElement.classList.remove("dark")
+    localStorage.removeItem("theme")
+  }
+</script>

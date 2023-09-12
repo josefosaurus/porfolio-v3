@@ -4,16 +4,78 @@ import { Image } from "astro:assets"
 import Badge from "../assets/images/badge.png"
 ---
 
+<head>
+  <script
+    src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.11.0/tsparticles.confetti.bundle.min.js"
+  ></script>
+</head>
 <section
-  class="education bg-[#96C93E] relative flex flex-col items-center justify-center rounded-xl col-span-2 md:col-span-2 row-span-1 overflow-clip p-4"
+  id="education"
+  class="education bg-[#96C93E] relative flex flex-col items-center justify-center rounded-xl col-span-2 md:col-span-2 row-span-1 overflow-clip p-4 shadow-md hover:shadow-xl hover:scale-105 transition-all"
 >
-  <div class="flex justify-between gap-2 w-[100%]">
-    <Image src={Badge} alt="code error" class="w-[25%] md:w-[8rem]" />
+  <a
+    href="https://platzi.com/p/Josefosaurus/curso/4623-course/diploma/detalle/"
+    target="_blank"
+    class="flex justify-between gap-2 w-[100%]"
+  >
+    <Image
+      src={Badge}
+      alt="code error"
+      class="h-[50px] md:h-[8rem] w-[50px] md:w-[8rem]"
+    />
     <div>
-      <h2 class="text-xs md:text-xl font-bold text-white">
+      <h2
+        class="text-xs md:text-xl max-w-[unset] md:max-w-[unset] font-bold text-white text-ellipsis"
+      >
         Audiocurso de Frameworks y Arquitecturas Frontend: Casos de Estudio
       </h2>
       <p>Platzi - 2023</p>
     </div>
-  </div>
+  </a>
 </section>
+
+<script>
+  const confetiTrigger = (active: boolean = true) => {
+    /**
+      https://github.com/matteobruni/tsparticles
+      https://particles.js.org
+      https://confetti.js.org
+    */
+
+    const duration = 2 * 1 * 1000,
+      animationEnd = Date.now() + duration,
+      defaults = { startVelocity: 30, spread: 360, ticks: 20, zIndex: 0 }
+
+    function randomInRange(min: number, max: number) {
+      return Math.random() * (max - min) + min
+    }
+
+    const interval = setInterval(function () {
+      const timeLeft = animationEnd - Date.now()
+
+      if (timeLeft <= 0 || !active) {
+        return clearInterval(interval)
+      }
+
+      const particleCount = 20 * (timeLeft / duration)
+
+      // since particles fall down, start a bit higher than random
+      confetti(
+        Object.assign({}, defaults, {
+          particleCount,
+          origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+        }),
+      )
+      confetti(
+        Object.assign({}, defaults, {
+          particleCount,
+          origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+        }),
+      )
+    }, 250)
+  }
+  const trigger = document.getElementById("education")
+
+  trigger?.addEventListener("mouseenter", () => confetiTrigger())
+  trigger?.removeEventListener("mouseleave", () => confetiTrigger(false))
+</script>
