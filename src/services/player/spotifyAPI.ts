@@ -10,7 +10,7 @@ interface userData {
 // Step 1: Get Authorization Code
 export const getAuthorizationCode = (clientId: string) => {
   const scopes = ['user-read-recently-played'];
-  const redirectUri = import.meta.env.PUBLIC_SITE_URL;
+  const redirectUri = "https://joseavila.dev"; //TODO: revisar el tema de las variables de entorno
   console.log('🔗', redirectUri)
   const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}`;
 
