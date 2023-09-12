@@ -70,13 +70,13 @@ jobs:
             --site "${{ steps.pages.outputs.origin }}" \
             --base "${{ steps.pages.outputs.base_path }}"
         working-directory: ${{ env.BUILD_PATH }}
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with: |
-          path: ${{ env.BUILD_PATH }}/dist
       - name: Log Environment Variable
         run: |
           echo "Environment Variable: ${{ env.PUBLIC_SITE_URL }}"
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ${{ env.BUILD_PATH }}/dist
   deploy:
     environment:
       name: github-pages
