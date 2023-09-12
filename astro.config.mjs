@@ -6,6 +6,7 @@ import react from "@astrojs/react"
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://j-avila.github.io/portfoliov3",
+  site: "https://j-avila.github.io/",
+  base: "porfolio-v3",
   integrations: [tailwind(), react(), svgr()],
 })
