@@ -72,9 +72,11 @@ jobs:
         working-directory: ${{ env.BUILD_PATH }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
-        with:
+        with: |
           path: ${{ env.BUILD_PATH }}/dist
-
+      - name: Log Environment Variable
+        run: |
+          echo "Environment Variable: ${{ env.PUBLIC_SITE_URL }}"
   deploy:
     environment:
       name: github-pages
