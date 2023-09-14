@@ -10,7 +10,7 @@ export const PlayButton = ({
   return (
     <figure
       onClick={playAction}
-      className={` button-wrapper ${state ? "active" : ""}`}
+      className={` button-wrapper ${state ? "" : "active"}`}
     >
       <div className="left"></div>
       <div className="right"></div>

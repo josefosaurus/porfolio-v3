@@ -19,7 +19,7 @@ const currentMinutes = currentDate.getMinutes()
 
 <section
   class:list={[
-    "relative flex flex-col items-center justify-center rounded-xl xs:h-auto col-span-2 row-span-1 overflow-clip p-4",
+    "relative flex flex-col items-center justify-center rounded-xl xs:h-auto col-span-2 row-span-1 overflow-clip p-2 lg:p-4",
     currentHour < 19 ? "weather-day" : "weather-night",
   ]}
 >
@@ -35,12 +35,16 @@ const currentMinutes = currentDate.getMinutes()
         <Sunny />
       )
     }
-    <div class="w-[70%] md:w-[50%]">
-      <h2 class="text-2xl md:text-6xl font-bold text-white">
+    <div
+      class="flex flex-col justify-start md:justify-center w-[75%] md:w-[50%]"
+    >
+      <h2 class="text-2xl md:text-4xl lg:text-6xl font-bold text-white">
         {`${Number(convertUnits(main.temp).from("K").to("C").toFixed(0))}°`}
       </h2>
-      <p class="text-white text-xs md:text-base">{`${name}, ${sys.country}`}</p>
-      <p class="text-sm md:text-base">
+      <p class="text-white text-xs md:text-base lg:text-2xl font-black">
+        {`${name}, ${sys.country}`}
+      </p>
+      <p class="text-gray-200 text-sm md:text-base lg:text-xl">
         {currentWeather.description}
         <br />
         {`${currentHour}:${currentMinutes < 10 ? 0 : ""}${currentMinutes}`}

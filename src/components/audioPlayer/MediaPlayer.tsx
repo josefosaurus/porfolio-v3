@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react"
 import AudioWaves from "./AudioWaves"
 import { PlayButton } from "./PlayButton"
 
-export const MediaPlayer = ({ trackUrl }: { trackUrl: boolean }) => {
+export const MediaPlayer = ({ trackUrl }: { trackUrl: string }) => {
   const [isPlaying, setIsPlaying]: [isPlaying: boolean, setIsPlaying: any] =
     useState(false)
   const audioRef: any = useRef(null)

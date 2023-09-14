@@ -22,7 +22,7 @@ export const AudioPlayer = () => {
   const handleAuth = async (reload?: boolean) => {
     const authorizationCode = getParam("code")
     if (!authorizationCode && !reload) {
-      getAuthorizationCode(clientId) //TODO: ver si pueod extraer del request la url sin redireccionar
+      getAuthorizationCode(clientId)
       return
     }
     const token = await getAuthToken({
@@ -56,6 +56,7 @@ export const AudioPlayer = () => {
   }
 
   useEffect(() => {
+    //TODO: verificar eliminar el token cuadno este vencido
     const codeParam = getParam("code")
     const localToken: LocalToken = JSON.parse(
       localStorage.getItem("auth-token")
@@ -88,7 +89,7 @@ export const AudioPlayer = () => {
             src={Spotify.src}
             className="top-2 left-2 md:top-6 md:left-6 z-10"
           />
-          <h2 className="text-l md:text-3xl font-bold ml-3 md:ml-5 z-10">
+          <h2 className="text-l md:text-2xl lg:text-3xl font-bold ml-3 md:ml-5 z-10">
             Recently played
           </h2>
         </a>
@@ -100,26 +101,26 @@ export const AudioPlayer = () => {
             height={track?.album.images[2].height || 50}
             width={track?.album.images[2].width || 50}
             src={track?.album.images[2].url || Cover.src}
-            className="w-10 h-10 md:w-24 md:h-24"
+            className="w-10 h-10 md:w-20 md:h-20 lg:h-24 lg:w-24"
           />
 
           <div className="player-info w-full">
-            <p className="text-text text-xs md:text-xl">
+            <p className="text-text text-xs md:text-xl w-full overflow-ellipsis">
               <strong className="">{track?.name || "album name"}</strong>
               <br /> by <span>{track?.artists[0].name || "Artist"}</span>
             </p>
             <MediaPlayer trackUrl={track?.preview_url || ""} />
           </div>
         </div>
-        <img
-          alt={track?.album.name || "💿"}
-          height={track?.album.images[1].height || Cover.height}
-          width={track?.album.images[2].width || Cover.width}
-          src={track?.album.images[2].url || Cover.src}
-          className="absolute -top-1/2 -left-0 w-[150%] md:w-[200%] opacity-[0.2] z-0 blur-sm"
-          draggable="false"
-        />
       </div>
+      <img
+        alt={track?.album.name || "💿"}
+        height={track?.album.images[1].height || Cover.height}
+        width={track?.album.images[2].width || Cover.width}
+        src={track?.album.images[2].url || Cover.src}
+        className="absolute -top-[50%] -left-0 w-[150%] md:w-[200%] opacity-[0.2] z-0 blur-sm"
+        draggable="false"
+      />
     </section>
   )
 }

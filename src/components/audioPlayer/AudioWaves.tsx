@@ -7,7 +7,7 @@ const AudioWaves = ({
   cols = 6,
 }: {
   isPlaying: boolean
-  cols: number
+  cols?: number
 }) => {
   const play = (isOn: boolean) => {
     const waves = document.querySelectorAll(".stroke")
