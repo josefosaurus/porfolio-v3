@@ -64,13 +64,13 @@ export const AudioPlayer = () => {
     const currentTime = new Date().getTime()
 
     if (localData.expDate < currentTime) {
-      console.log("🙅‍♂️ token expired", {
+      console.log("🙅‍♂️: expired", {
         expirationdate: localData.expDate,
         currentTime,
       })
       return false
     } else {
-      console.log("🔑 local is valid", { localData, currentTime })
+      console.log("🔑: is valid")
       return true
     }
   }

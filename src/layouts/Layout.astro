@@ -36,9 +36,14 @@ console.log("mode", import.meta.env.MODE)
 <style is:global>
   ::-webkit-scrollbar {
     width: 8px;
+    transition: all;
+  }
+  ::-webkit-scrollbar:hover {
+    width: 15px;
+    transition: all;
   }
   ::-webkit-scrollbar-track {
-    background: #3d3d3d;
+    background: #3d3d3d56;
   }
   ::-webkit-scrollbar-thumb {
     background: #00b61e;
@@ -47,6 +52,7 @@ console.log("mode", import.meta.env.MODE)
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #008f18;
+    cursor: pointer;
     transition: all;
   }
   html {
