@@ -14,8 +14,8 @@ export const getAuthorizationCode = (clientId: string) => {
   const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=${scopes.join(
     "%20"
   )}`
-
-  window.location.href = authUrl
+  console.log('🔑', authUrl)
+  // window.location.href = authUrl
 }
 
 // Step 2: Exchange Authorization Code for Access Token
