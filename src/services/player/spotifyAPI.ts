@@ -9,7 +9,7 @@ interface userData {
 // Step 1: Get Authorization Code
 export const getAuthorizationCode = (clientId: string) => {
   const scopes = ["user-read-recently-played"]
-  const redirectUri = "https://joseavila.dev" //TODO: revisar el tema de las variables de entorno
+  const redirectUri = import.meta.env.PUBLIC_PORTFOLIO_URL  //TODO: revisar el tema de las variables de entorno
   console.log("🔗", redirectUri)
   const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=${scopes.join(
     "%20"
@@ -25,7 +25,7 @@ export const getAuthToken = async (user: userData) => {
   const data = {
     grant_type: "authorization_code",
     code: user.authorizationCode,
-    redirect_uri: import.meta.env.PUBLIC_SITE_URL,
+    redirect_uri: import.meta.env.PUBLIC_PORTFOLIO_URL,
   }
 
   const response = await fetch(tokenUrl, {
