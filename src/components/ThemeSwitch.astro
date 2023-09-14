@@ -22,14 +22,14 @@ import Moon from "../assets/images/moon.svg"
 </div>
 
 <script>
-  import { theme } from "@store/store"
+  import { darkmode } from "@store/store"
   const themeSwitch = document.getElementById("themeSwitch")
 
   const toggleTheme = () => {
     const currentTheme = localStorage.getItem("theme")
-    const themeUpdated = currentTheme === "dark" ? "light" : "dark"
-    localStorage.setItem("theme", themeUpdated)
-    theme.set(themeUpdated)
+    const themeUpdated = currentTheme === "dark"
+    darkmode.set(!themeUpdated)
+    localStorage.setItem("theme", darkmode.value ? "dark" : "light")
   }
 
   // Add an event listener to the button

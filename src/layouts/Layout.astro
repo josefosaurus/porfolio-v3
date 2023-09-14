@@ -67,26 +67,33 @@ console.log("mode", import.meta.env.MODE)
 </style>
 
 <script>
-  import { theme } from "@store/store"
+  import { darkmode } from "@store/store"
+  const wrapper = document.documentElement
 
-  // Listen to changes in the store, and show/hide the dialog accordingly
-  theme.subscribe((colorTheme) => {
-    // const wrapper = document.getElementsByTagName("body")[0]
-    const wrapper = document.documentElement
-    wrapper.classList.remove("dark")
-    wrapper.classList.remove("light")
-    wrapper.classList.add(colorTheme)
-  })
+  const themeHandler = (darkmode: boolean) => {
+    if (darkmode) {
+      wrapper.classList.remove("light")
+      wrapper.classList.add("dark")
+    } else {
+      wrapper.classList.remove("dark")
+      wrapper.classList.add("light")
+    }
+  }
+  // Listen to changes in the store, and toggle the theme accordingly
+  darkmode.subscribe((darkmode) => themeHandler(darkmode))
 
   if (
     localStorage.theme === "dark" ||
     (!("theme" in localStorage) &&
       window.matchMedia("(prefers-color-scheme: dark)").matches)
   ) {
+    wrapper.classList.remove("light")
     document.documentElement.classList.add("dark")
     localStorage.setItem("theme", "dark")
+    darkmode.set(true)
   } else {
     document.documentElement.classList.remove("dark")
     localStorage.removeItem("theme")
+    darkmode.set(false)
   }
 </script>

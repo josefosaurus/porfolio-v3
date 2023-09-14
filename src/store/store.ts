@@ -1,3 +1,3 @@
-import { atom } from 'nanostores';
+import { atom, type Store } from 'nanostores';
 
-export const theme = atom('light');
+export const darkmode: Store = atom(false);
