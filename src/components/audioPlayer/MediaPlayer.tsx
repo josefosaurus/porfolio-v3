@@ -19,10 +19,6 @@ export const MediaPlayer = ({ trackUrl }: { trackUrl: string }) => {
     }
   }
 
-  useEffect(() => {
-    console.log(trackUrl)
-  }, [])
-
   return (
     <div id="mediaplayer">
       {trackUrl ? (

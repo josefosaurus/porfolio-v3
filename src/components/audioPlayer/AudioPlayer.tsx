@@ -17,7 +17,7 @@ export const AudioPlayer = () => {
   const clientSecret: string = import.meta.env.PUBLIC_CLIENT_SECRET
 
   const [track, setStrack] = useState<Track>()
-  const mins = new Date().getTime() + 2 * 60000
+  const mins = new Date().getTime() + 60 * 60000
 
   const handleAuth = async (reload?: boolean) => {
     const authorizationCode = getParam("code")
@@ -25,19 +25,24 @@ export const AudioPlayer = () => {
       getAuthorizationCode(clientId)
       return
     }
-    const token = await getAuthToken({
-      authorizationCode,
-      clientId,
-      clientSecret,
-    })
-    localStorage.setItem(
-      "auth-token",
-      JSON.stringify({
-        value: token,
-        expDate: mins,
+    try {
+      const token = await getAuthToken({
+        authorizationCode,
+        clientId,
+        clientSecret,
       })
-    )
-    getTrack(token)
+      localStorage.setItem(
+        "auth-token",
+        JSON.stringify({
+          value: token,
+          expDate: mins,
+        })
+      )
+      getTrack(token)
+    } catch (err) {
+      console.log("🤌🏽", err)
+      throw new Error(err)
+    }
   }
 
   const getTrack = async (token: string): Promise<void> => {
@@ -55,6 +60,21 @@ export const AudioPlayer = () => {
     }
   }
 
+  const verifyToken = (localData: { value: string; expDate: number }) => {
+    const currentTime = new Date().getTime()
+
+    if (localData.expDate < currentTime) {
+      console.log("🙅‍♂️ token expired", {
+        expirationdate: localData.expDate,
+        currentTime,
+      })
+      return false
+    } else {
+      console.log("🔑 local is valid", { localData, currentTime })
+      return true
+    }
+  }
+
   useEffect(() => {
     //TODO: verificar eliminar el token cuadno este vencido
     const codeParam = getParam("code")
@@ -62,7 +82,7 @@ export const AudioPlayer = () => {
       localStorage.getItem("auth-token")
     )
 
-    if (!localStorage.getItem("auth-token")) {
+    if (!localStorage.getItem("auth-token") || !verifyToken(localToken)) {
       handleAuth()
       return
     }
