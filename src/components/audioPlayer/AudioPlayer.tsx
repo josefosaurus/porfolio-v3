@@ -88,6 +88,7 @@ export const AudioPlayer = () => {
     }
     if (codeParam) {
       const url = removeUrlParam(window.location.href, "code")
+      console.log("🤌🏽 ", url)
       window.history.pushState({}, "", url)
       return
     }
