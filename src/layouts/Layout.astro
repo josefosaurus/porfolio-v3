@@ -34,6 +34,21 @@ console.log("mode", import.meta.env.MODE)
   </body>
 </html>
 <style is:global>
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #3d3d3d;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #00b61e;
+    transition: all;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #008f18;
+    transition: all;
+  }
   html {
     font-family: "Lato", sans-serif;
     background-size: 224px;
