@@ -82,7 +82,7 @@ export const AudioPlayer = () => {
       localStorage.getItem("auth-token")
     )
 
-    if (!localStorage.getItem("auth-token") || !verifyToken(localToken)) {
+    if (!localToken.value || !verifyToken(localToken)) {
       handleAuth()
       return
     }
