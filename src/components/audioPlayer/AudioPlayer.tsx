@@ -82,12 +82,15 @@ export const AudioPlayer = () => {
       localStorage.getItem("auth-token")
     )
 
-    if (!localToken.value || !verifyToken(localToken)) {
+    if (!localToken?.value || !verifyToken(localToken)) {
       handleAuth()
       return
     }
     if (codeParam) {
       const url = removeUrlParam(window.location.href, "code")
+      let lastSlashIndex = url.lastIndexOf("/")
+      let updatedUrl =
+        url.slice(0, lastSlashIndex) + url.slice(lastSlashIndex + 1)
       console.log("🤌🏽 ", url)
       window.history.pushState({}, "", url)
       return

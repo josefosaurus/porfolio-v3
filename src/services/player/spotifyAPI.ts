@@ -9,10 +9,14 @@ interface userData {
 // Step 1: Get Authorization Code
 export const getAuthorizationCode = (clientId: string) => {
   const scopes = ["user-read-recently-played"]
-  const redirectUri = "https://joseavila.dev"  //TODO: revisar el tema de las variables de entorno
-  const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=${scopes.join(
+  const redirectUri = `${window.location.href}`
+  let lastSlashIndex = redirectUri.lastIndexOf("/");
+  let updatedUrl = redirectUri.slice(0, lastSlashIndex) + redirectUri.slice(lastSlashIndex + 1);
+  const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${updatedUrl}&scope=${scopes.join(
     "%20"
   )}`
+
+  console.log("🤌🏽🔗", { type: typeof redirectUri, redirectUri })
   window.location.href = authUrl
 }
 
