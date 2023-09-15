@@ -27,7 +27,7 @@ export const getAuthToken = async (user: userData) => {
   const data = {
     grant_type: "authorization_code",
     code: user.authorizationCode,
-    redirect_uri: import.meta.env.PUBLIC_PORTFOLIO_URL,
+    redirect_uri: "https://joseavila.dev",
   }
 
   const response = await fetch(tokenUrl, {
