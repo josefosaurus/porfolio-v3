@@ -12,8 +12,7 @@ export const getAuthorizationCode = (clientId: string) => {
   const redirectUri = `${window.location.href}`
   let lastSlashIndex = redirectUri.lastIndexOf("/");
   let updatedUrl = redirectUri.slice(0, lastSlashIndex) + redirectUri.slice(lastSlashIndex + 1);
-  const hardCodedURL = "https://joseavila.dev"
-  const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${hardCodedURL}&scope=${scopes.join(
+  const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri="https://joseavila.dev"&scope=${scopes.join(
     "%20"
   )}`
 
