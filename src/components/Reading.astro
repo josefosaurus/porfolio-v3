@@ -1,11 +1,14 @@
 ---
 import { Image } from "astro:assets"
-import { getArticles } from "../services/readingList/pocketApi"
 
 import Pocket from "../assets/images/pocket.svg"
 import Thumb from "../assets/images/thumb.png"
 
-const articles = (await getArticles()) || [] //TODO: implementar el oauth de pocket para el uso
+const getArticles = () => {
+  null
+} //TODO: create the service on backend
+
+const articles = getArticles() || []
 // const articles: [] = []
 ---
 

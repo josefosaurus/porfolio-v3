@@ -1,51 +1,19 @@
 import React, { useState, useEffect } from "react"
 import Spotify from "@assets/images/spotify.svg"
 import Cover from "@assets/images/albumcover.png"
-import {
-  getParam,
-  getAuthorizationCode,
-  getAuthToken,
-  removeUrlParam,
-} from "src/services/player/spotifyAPI"
-
 import type { Track, LocalToken } from "./types"
 import { MediaPlayer } from "./MediaPlayer"
 
 export const AudioPlayer = () => {
   const apiUrl: string = import.meta.env.PUBLIC_SPOTIFY_API
-  const clientId: string = import.meta.env.PUBLIC_SPOTIFY_API_CLIENT_ID
+  const clientId: string = import.meta.env.PUBLIC_SPOTIFY_CLIENT_ID
   const clientSecret: string = import.meta.env.PUBLIC_CLIENT_SECRET
+  const token = import.meta.env.PUBLIC_SPOTIFY_TEMP_TOKEN
 
   const [track, setStrack] = useState<Track>()
   const mins = new Date().getTime() + 60 * 60000
 
-  const handleAuth = async (reload?: boolean) => {
-    const authorizationCode = getParam("code")
-    if (!authorizationCode && !reload) {
-      getAuthorizationCode(clientId)
-      return
-    }
-    try {
-      const token = await getAuthToken({
-        authorizationCode,
-        clientId,
-        clientSecret,
-      })
-      localStorage.setItem(
-        "auth-token",
-        JSON.stringify({
-          value: token,
-          expDate: mins,
-        })
-      )
-      getTrack(token)
-    } catch (err) {
-      console.log("🤌🏽", err)
-      throw new Error(err)
-    }
-  }
-
-  const getTrack = async (token: string): Promise<void> => {
+  const getTrack = async (): Promise<void> => {
     try {
       const data = await fetch(apiUrl, {
         method: "GET",
@@ -60,44 +28,8 @@ export const AudioPlayer = () => {
     }
   }
 
-  const verifyToken = (localData: { value: string; expDate: number }) => {
-    const currentTime = new Date().getTime()
-
-    if (localData.expDate < currentTime) {
-      console.log("🙅‍♂️: expired", {
-        expirationdate: localData.expDate,
-        currentTime,
-      })
-      return false
-    } else {
-      console.log("🔑: is valid")
-      return true
-    }
-  }
-
   useEffect(() => {
-    //TODO: verificar eliminar el token cuadno este vencido
-    const codeParam = getParam("code")
-    const localToken: LocalToken = JSON.parse(
-      localStorage.getItem("auth-token")
-    )
-
-    if (!localToken?.value || !verifyToken(localToken)) {
-      handleAuth()
-      return
-    }
-    if (codeParam) {
-      const url = removeUrlParam(window.location.href, "code")
-      let lastSlashIndex = url.lastIndexOf("/")
-      let updatedUrl =
-        url.slice(0, lastSlashIndex) + url.slice(lastSlashIndex + 1)
-      console.log("🤌🏽 ", url)
-      window.history.pushState({}, "", url)
-      return
-    }
-
-    getTrack(localToken.value)
-    return
+    getTrack()
   }, [])
 
   return (
