@@ -5,7 +5,9 @@ import type { Track, LocalToken } from "./types"
 import { MediaPlayer } from "./MediaPlayer"
 
 export const AudioPlayer = () => {
-  const apiUrl: string = import.meta.env.PUBLIC_SPOTIFY_API
+  // const apiUrl: string = import.meta.env.PUBLIC_SPOTIFY_API
+  const apiUrl: string =
+    "https://portfoliobackend-lx0u-dev.fl0.io/api/spotify-current-track"
 
   const [track, setStrack] = useState<Track>()
 
