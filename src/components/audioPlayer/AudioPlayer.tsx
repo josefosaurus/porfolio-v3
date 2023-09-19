@@ -5,24 +5,19 @@ import type { Track, LocalToken } from "./types"
 import { MediaPlayer } from "./MediaPlayer"
 
 export const AudioPlayer = () => {
+  // const apiUrl: string =
+  //   "https://portfolio-alj6.onrender.com/api/spotify-current-track"
   const apiUrl: string = import.meta.env.PUBLIC_SPOTIFY_API
-  const clientId: string = import.meta.env.PUBLIC_SPOTIFY_CLIENT_ID
-  const clientSecret: string = import.meta.env.PUBLIC_CLIENT_SECRET
-  const token = import.meta.env.PUBLIC_SPOTIFY_TEMP_TOKEN
 
   const [track, setStrack] = useState<Track>()
-  const mins = new Date().getTime() + 60 * 60000
 
   const getTrack = async (): Promise<void> => {
     try {
       const data = await fetch(apiUrl, {
         method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
       })
       const currentTrack = await data.json()
-      setStrack(currentTrack.items[0].track)
+      setStrack(currentTrack.track.items[0].track)
     } catch (error) {
       console.log(error)
     }

@@ -5,18 +5,30 @@
 <section
   class="basic-info flex flex-col justify-center bg-[#50BF97] rounded-xl col-span-1 square xs:h-auto xs:square overflow-clip p-4"
 >
-  <p
-    class="text-center text-white text-xs md:text-xl mx-auto md:leading-[2.5rem]"
-  >
-    <span class="text-black text-center">
-      <strong class="font-extrabold text-base md:text-4xl">+5</strong>
-      <br />
-       Developer <br />
-      <strong class="font-extrabold text-base md:text-4xl">+8</strong>
-      <br />
-       Designer</span
+  <h1>
+    <a
+      href=""
+      class="typewrite text-black font-extrabold text-center"
+      data-period="2000"
+      data-type='[ "+5 YEARS", "as Developer", "+8 YEARS", "as Designer" ]'
     >
-    <br />
-     Years of experience
-  </p>
+      <span class="wrap"></span>
+    </a>
+  </h1>
 </section>
+
+<script>
+  import { TxtType } from "../utils/typing"
+  window.onload = () => {
+    const elements = document.getElementsByClassName("typewrite")
+
+    for (let i = 0; i < elements.length; i++) {
+      const toRotate = elements[i].getAttribute("data-type")
+      const period = elements[i].getAttribute("data-period")
+
+      if (toRotate) {
+        TxtType(elements[i], JSON.parse(toRotate), period)
+      }
+    }
+  }
+</script>
