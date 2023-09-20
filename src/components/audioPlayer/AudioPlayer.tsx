@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react"
 import Spotify from "@assets/images/spotify.svg"
 import Cover from "@assets/images/albumcover.png"
-import type { Track, LocalToken } from "./types"
+import type { Track } from "./types"
 import { MediaPlayer } from "./MediaPlayer"
 
 export const AudioPlayer = () => {
-  // const apiUrl: string =
-  //   "https://portfolio-alj6.onrender.com/api/spotify-current-track"
   const apiUrl: string = import.meta.env.PUBLIC_SPOTIFY_API
 
   const [track, setStrack] = useState<Track>()
