@@ -42,7 +42,6 @@ export const Rainy = () => {
             <animate
               attributeType="CSS"
               attributeName="opacity"
-              attributeType="XML"
               dur="1s"
               keyTimes="0;1"
               repeatCount="indefinite"

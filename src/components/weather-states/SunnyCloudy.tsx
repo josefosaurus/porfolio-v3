@@ -97,7 +97,6 @@ export const SunnyCloudy = () => {
               <animate
                 attributeType="CSS"
                 attributeName="opacity"
-                attributeType="XML"
                 dur="0.5s"
                 keyTimes="0;0.5;1"
                 repeatCount="indefinite"
