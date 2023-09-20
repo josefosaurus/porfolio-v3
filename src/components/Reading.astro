@@ -2,18 +2,7 @@
 import { Image } from "astro:assets"
 
 import Pocket from "@assets/images/pocket.svg"
-// import Thumb from "@assets/images/thumb.png"
-
-const getArticles = async () => {
-  const response = await fetch(import.meta.env.POCKET_API)
-  if (response.status !== 200) {
-    return []
-  }
-  const data = await response.json()
-  return data.result
-}
-
-const articles = (await getArticles()) || []
+import Thumb from "@assets/images/thumb.png"
 
 interface Article {
   resolved_url: string
@@ -22,6 +11,11 @@ interface Article {
   listen_duration_estimate: string
   top_image_url: string
 }
+
+const response = await fetch(import.meta.env.PUBLIC_POCKET_API)
+const data = await response.json()
+
+const articles = data.result || []
 ---
 
 <section
@@ -53,7 +47,15 @@ interface Article {
               {item.domain_metadata?.name} -{item.listen_duration_estimate}
               mins
             </p>
-            <a href={item.resolved_url}></a>
+            <a href={item.resolved_url}>
+              <Image
+                alt="article thumb"
+                src={item.top_image_url || Thumb.src}
+                class="w-[50px] h-[50px]"
+                height={50}
+                width={50}
+              />
+            </a>
           </li>
         ))
       ) : (
