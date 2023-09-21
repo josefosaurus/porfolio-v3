@@ -1,8 +1,11 @@
 ---
 import { Image } from "astro:assets"
+import { getLangFromUrl, useTranslations } from "../i18n/utils"
 
 import Badge from "../assets/images/logo.svg"
 import Bg from "../assets/images/me.png"
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 ---
 
 <div
@@ -15,17 +18,9 @@ import Bg from "../assets/images/me.png"
     draggable="false"
   />
   <section class="justify-between relative z-10 w-[100%] md:max-w-[70%]">
-    <h1 class="text-xl font-black md:text-4xl">Hi, I'm Jose Ávila</h1>
+    <h1 class="text-xl font-black md:text-4xl">{t("about.title")}</h1>
     <p class="text-xs md:text-xs lg:text-base">
-      Full-Stack developer with years of experience in Web development.
-      Proficient in HTML, CSS, and PHP. Experience with <span
-        class="underline underline-offset-1">JavaScript</span
-      > frameworks and mobile such as <span class="underline underline-offset-1"
-        >React Native and Flutter</span
-      >. Strong understanding of user experience design. Excellent
-      problem-solving and debugging skills. Ability to work independently and as
-      part of a team. Passionate about learning new technologies and solving
-      challenging problems.
+      {t("about.desc")}
     </p>
   </section>
   <Image
