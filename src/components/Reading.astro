@@ -1,14 +1,27 @@
 ---
 import { Image } from "astro:assets"
 
-import Pocket from "../assets/images/pocket.svg"
-import Thumb from "../assets/images/thumb.png"
+import Pocket from "@assets/images/pocket.svg"
+import Thumb from "@assets/images/thumb.png"
 
-/* const getArticles = () => {
-  null
-} //TODO: create the service on backend */
+interface Article {
+  resolved_url: string
+  resolved_title: string
+  domain_metadata: { name: string }
+  listen_duration_estimate: string
+  top_image_url: string
+}
 
-const articles: [] = []
+let articles: [] = []
+try {
+  const response = await fetch(import.meta.env.PUBLIC_POCKET_API)
+  const data = await response.json()
+  articles = data.result
+  console.log("🤌🏽", articles)
+} catch (err) {
+  console.log("🤌🏽 boluuudo", err)
+  return
+}
 ---
 
 <section
@@ -30,7 +43,7 @@ const articles: [] = []
   <ul class="flex-col justify-between py-4 hidden md:flex">
     {
       articles?.length >= 1 ? (
-        articles.map((item) => (
+        articles.map((item: Article) => (
           <li class="flex justify-between border-b mb-2">
             <p>
               <a href={item.resolved_url}>
@@ -43,8 +56,10 @@ const articles: [] = []
             <a href={item.resolved_url}>
               <Image
                 alt="article thumb"
-                src={item.top_image_url || Thumb}
+                src={item.top_image_url || Thumb.src}
                 class="w-[50px] h-[50px]"
+                height={50}
+                width={50}
               />
             </a>
           </li>

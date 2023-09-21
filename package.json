@@ -3,10 +3,10 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev --host",
+    "dev": "astro dev ",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "NODE_ENV=prod astro preview",
     "astro": "astro"
   },
   "dependencies": {
@@ -16,12 +16,15 @@
     "@types/react-dom": "^18.2.7",
     "astro": "^3.0.7",
     "buffer": "^6.0.3",
-    "convert-units": "^2.3.4",
+    "convert": "^4.13.2",
     "js-confetti": "^0.11.0",
     "nanostores": "^0.9.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tailwindcss": "^3.3.3",
     "vite-plugin-svgr": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/convert-units": "^2.3.7"
   }
 }
