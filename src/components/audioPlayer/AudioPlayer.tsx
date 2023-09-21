@@ -44,7 +44,7 @@ export const AudioPlayer = () => {
         </a>
       </header>
       <div className="player relative flex flex-col left-2 md:left-0 align-center gap-4 p-2 pt-0 md:p-4">
-        <div className="flex items-center gap-4 w-[100%] md:ml-2 md:w-[80%] z-10">
+        <div className="flex items-center gap-4 w-[100%] md:ml-2 md:w-[95%] z-10">
           <img
             alt={track?.album.name || "album name"}
             height={track?.album.images[2].height || 50}
@@ -54,8 +54,8 @@ export const AudioPlayer = () => {
           />
 
           <div className="player-info w-full">
-            <p className="text-text text-xs md:text-xl w-full overflow-ellipsis">
-              <strong className="">{track?.name || "album name"}</strong>
+            <p className="text-text text-xs md:text-xl w-[70%] md:w-[75%] truncate">
+              <strong>{track?.name || "album name"}</strong>
               <br /> by <span>{track?.artists[0].name || "Artist"}</span>
             </p>
             <MediaPlayer trackUrl={track?.preview_url || ""} />
