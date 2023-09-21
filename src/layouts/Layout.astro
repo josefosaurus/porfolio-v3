@@ -7,17 +7,52 @@ const { title } = Astro.props
 
 import icon from "../assets/images/favicon.svg"
 import Footer from "../components/Footer.astro"
+import { getLangFromUrl } from "../i18n/utils"
 import "../../main.css"
 
-console.log("mode", import.meta.env.MODE)
+const lang = getLangFromUrl(Astro.url)
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Jose Ávila - Software Developer 💻" />
     <meta name="viewport" content="width=device-width" />
+
+    <meta name="keywords" content="Jose Avila, developer, portfolio" />
+    <meta name="author" content="Jose Avila" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#3498db" />
+    <!-- Specify the theme color for mobile browsers -->
+
+    <!-- Open Graph Meta Tags (for social media sharing) -->
+    <meta property="og:title" content="Jose Avila - Developer Portfolio" />
+    <meta
+      property="og:description"
+      content="Explore the portfolio of Jose Avila, a talented developer."
+    />
+    <meta
+      property="og:image"
+      content="https://joseavila.dev/_astro/me.7836aee2_Z1M9n7Y.webp"
+    />
+    <!-- URL to a representative image -->
+    <meta property="og:url" content="https://joseavila.dev" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card Meta Tags (for Twitter sharing) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@josefosaurus" />
+    <meta name="twitter:title" content="Jose Avila - Developer Portfolio" />
+    <meta
+      name="twitter:description"
+      content="Explore the portfolio of Jose Avila, a talented developer."
+    />
+    <meta
+      name="twitter:image"
+      content="https://joseavila.dev/_astro/me.7836aee2_Z1M9n7Y.webp"
+    />
+
     <link rel="icon" type="image/svg+xml" href={icon.src} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,6 +60,20 @@ console.log("mode", import.meta.env.MODE)
       href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;900&display=swap"
       rel="stylesheet"
     />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-77595003-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag("js", new Date())
+
+      gtag("config", "UA-77595003-1")
+    </script>
+
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
