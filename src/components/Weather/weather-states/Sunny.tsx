@@ -2,7 +2,7 @@ import React from "react"
 
 export const Sunny = () => {
   return (
-    <div className="h-[60%] md:h-[80%] w-[50%] md:w-[40%] m-[10px]">
+    <div className="h-[50%] md:h-[80%] w-[30%] md:w-[40%] m-[10px]">
       <svg
         version="1.1"
         id="Layer_1"

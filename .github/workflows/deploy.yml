@@ -14,6 +14,11 @@ permissions:
   pages: write
   id-token: write
 
+env:
+  PUBLIC_PORTFOLIO_URL: ${{ vars.PUBLIC_PORTFOLIO_URL }}
+  PUBLIC_SPOTIFY_API: ${{vars.PUBLIC_SPOTIFY_API}}
+  PUBLIC_POCKET_API: ${{vars.PUBLIC_POCKET_API}}
+  PUBLIC_OPEN_WEATHER_API: ${{vars.OPEN_WEATHER_API}}
 jobs:
   build:
     runs-on: ubuntu-latest
