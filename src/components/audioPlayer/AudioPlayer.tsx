@@ -6,10 +6,12 @@ import { MediaPlayer } from "./MediaPlayer"
 
 export const AudioPlayer = () => {
   const apiUrl: string = import.meta.env.PUBLIC_SPOTIFY_API
-
   const [track, setStrack] = useState<Track>()
+  const [loading, setLoading] = useState<boolean>(false)
 
   const getTrack = async (): Promise<void> => {
+    setLoading(true)
+
     try {
       const data = await fetch(apiUrl, {
         method: "GET",
@@ -19,6 +21,7 @@ export const AudioPlayer = () => {
     } catch (error) {
       console.log(error)
     }
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -45,21 +48,36 @@ export const AudioPlayer = () => {
       </header>
       <div className="player relative flex flex-col left-2 md:left-0 align-center gap-4 p-2 pt-0 md:p-4">
         <div className="flex items-center gap-4 w-[100%] md:ml-2 md:w-[95%] z-10">
-          <img
-            alt={track?.album.name || "album name"}
-            height={track?.album.images[2].height || 50}
-            width={track?.album.images[2].width || 50}
-            src={track?.album.images[2].url || Cover.src}
-            className="w-10 h-10 md:w-20 md:h-20 lg:h-24 lg:w-24"
-          />
+          {loading ? (
+            <div className="animate-pulse flex space-x-4">
+              <div className="w-[64px] h-[64px] bg-lime-600"></div>
+              <div className="space-y-3">
+                <div className="grid grid-cols-12 gap-4">
+                  <div className="h-2 bg-lime-200 rounded col-span-6"></div>
+                </div>
+                <div className="h-2 bg-lime-200 rounded"></div>
+                <div className="h-2 bg-lime-200 rounded"></div>
+              </div>
+            </div>
+          ) : (
+            <>
+              <img
+                alt={track?.album.name || "album name"}
+                height={track?.album.images[2].height || 50}
+                width={track?.album.images[2].width || 50}
+                src={track?.album.images[2].url || Cover.src}
+                className="w-10 h-10 md:w-20 md:h-20 lg:h-24 lg:w-24"
+              />
 
-          <div className="player-info w-full">
-            <p className="text-text text-xs md:text-xl w-[70%] md:w-[75%] truncate">
-              <strong>{track?.name || "album name"}</strong>
-              <br /> by <span>{track?.artists[0].name || "Artist"}</span>
-            </p>
-            <MediaPlayer trackUrl={track?.preview_url || ""} />
-          </div>
+              <div className="player-info w-full">
+                <p className="text-text text-xs md:text-xl w-[70%] md:w-[75%] truncate">
+                  <strong>{track?.name || "album name"}</strong>
+                  <br /> by <span>{track?.artists[0].name || "Artist"}</span>
+                </p>
+                <MediaPlayer trackUrl={track?.preview_url || ""} />
+              </div>
+            </>
+          )}
         </div>
       </div>
       <img
