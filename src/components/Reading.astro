@@ -45,14 +45,14 @@ try {
         articles.map((item: Article) => (
           <li class="flex justify-between border-b mb-2">
             <p>
-              <a href={item.resolved_url}>
+              <a href={item.resolved_url} target="_blank">
                 <strong class="hover:underline">{item.resolved_title}</strong>
               </a>
               <br />
               {item.domain_metadata?.name} -{item.listen_duration_estimate}
               mins
             </p>
-            <a href={item.resolved_url}>
+            <a href={item.resolved_url} target="_blank">
               <Image
                 alt="article thumb"
                 src={item.top_image_url || Thumb.src}
