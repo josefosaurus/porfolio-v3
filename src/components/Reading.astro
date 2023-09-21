@@ -12,10 +12,16 @@ interface Article {
   top_image_url: string
 }
 
-const response = await fetch(import.meta.env.PUBLIC_POCKET_API)
-const data = await response.json()
-
-const articles = data.result || []
+let articles: [] = []
+try {
+  const response = await fetch(import.meta.env.PUBLIC_POCKET_API)
+  const data = await response.json()
+  articles = data.result
+  console.log("🤌🏽", articles)
+} catch (err) {
+  console.log("🤌🏽 boluuudo", err)
+  return
+}
 ---
 
 <section
