@@ -23,7 +23,7 @@ export const MediaPlayer = ({ trackUrl }: { trackUrl: string }) => {
     <div id="mediaplayer">
       {trackUrl ? (
         <>
-          <audio id="audio" ref={audioRef}>
+          <audio id="audio" ref={audioRef} onEnded={() => setIsPlaying(false)}>
             <source src={trackUrl} type="audio/mp3" />
           </audio>
           <div

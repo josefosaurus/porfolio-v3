@@ -17,6 +17,7 @@ export const AudioPlayer = () => {
         method: "GET",
       })
       const currentTrack = await data.json()
+      console.log("💿", currentTrack.track.items[0].track)
       setStrack(currentTrack.track.items[0].track)
     } catch (error) {
       console.log(error)
@@ -70,10 +71,14 @@ export const AudioPlayer = () => {
               />
 
               <div className="player-info w-full">
-                <p className="text-text text-xs md:text-xl w-[70%] md:w-[75%] truncate">
+                <a
+                  href={track?.external_urls.spotify}
+                  target="_blank"
+                  className="text-text hover:text-white text-xs md:text-xl w-[70%] block md:w-[75%] truncate"
+                >
                   <strong>{track?.name || "album name"}</strong>
                   <br /> by <span>{track?.artists[0].name || "Artist"}</span>
-                </p>
+                </a>
                 <MediaPlayer trackUrl={track?.preview_url || ""} />
               </div>
             </>
