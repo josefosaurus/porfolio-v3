@@ -4,6 +4,7 @@ interface Props {
 }
 
 const { title } = Astro.props
+import { ViewTransitions } from "astro:transitions"
 
 import icon from "../assets/images/favicon.svg"
 import Footer from "../components/Footer.astro"
@@ -61,9 +62,8 @@ const lang = getLangFromUrl(Astro.url)
       rel="stylesheet"
     />
     <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-77595003-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N6XE8TKQ51"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || []
       function gtag() {
@@ -71,84 +71,85 @@ const lang = getLangFromUrl(Astro.url)
       }
       gtag("js", new Date())
 
-      gtag("config", "UA-77595003-1")
+      gtag("config", "G-N6XE8TKQ51")
     </script>
 
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <!-- <ViewTransitions /> -->
   </head>
   <body class="bg-slate-200 dark:bg-background text-text">
     <slot />
     <Footer />
+    <style is:global>
+      ::-webkit-scrollbar {
+        width: 8px;
+        transition: all;
+      }
+      ::-webkit-scrollbar:hover {
+        width: 15px;
+        transition: all;
+      }
+      ::-webkit-scrollbar-track {
+        background: #3d3d3d56;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #00b61e;
+        transition: all;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #008f18;
+        cursor: pointer;
+        transition: all;
+      }
+      html {
+        font-family: "Lato", sans-serif;
+        background-size: 224px;
+      }
+      code {
+        font-family:
+          Menlo,
+          Monaco,
+          Lucida Console,
+          Liberation Mono,
+          DejaVu Sans Mono,
+          Bitstream Vera Sans Mono,
+          Courier New,
+          monospace;
+      }
+    </style>
+
+    <script>
+      import { darkmode } from "@store/store"
+      const wrapper = document.documentElement
+
+      const themeHandler = (darkmode: boolean) => {
+        if (darkmode) {
+          wrapper.classList.remove("light")
+          wrapper.classList.add("dark")
+        } else {
+          wrapper.classList.remove("dark")
+          wrapper.classList.add("light")
+        }
+      }
+      // Listen to changes in the store, and toggle the theme accordingly
+      darkmode.subscribe((darkmode) => themeHandler(darkmode))
+
+      if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        wrapper.classList.remove("light")
+        document.documentElement.classList.add("dark")
+        localStorage.setItem("theme", "dark")
+        darkmode.set(true)
+      } else {
+        document.documentElement.classList.remove("dark")
+        localStorage.removeItem("theme")
+        darkmode.set(false)
+      }
+    </script>
   </body>
 </html>
-<style is:global>
-  ::-webkit-scrollbar {
-    width: 8px;
-    transition: all;
-  }
-  ::-webkit-scrollbar:hover {
-    width: 15px;
-    transition: all;
-  }
-  ::-webkit-scrollbar-track {
-    background: #3d3d3d56;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #00b61e;
-    transition: all;
-    border-radius: 10px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #008f18;
-    cursor: pointer;
-    transition: all;
-  }
-  html {
-    font-family: "Lato", sans-serif;
-    background-size: 224px;
-  }
-  code {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
-  }
-</style>
-
-<script>
-  import { darkmode } from "@store/store"
-  const wrapper = document.documentElement
-
-  const themeHandler = (darkmode: boolean) => {
-    if (darkmode) {
-      wrapper.classList.remove("light")
-      wrapper.classList.add("dark")
-    } else {
-      wrapper.classList.remove("dark")
-      wrapper.classList.add("light")
-    }
-  }
-  // Listen to changes in the store, and toggle the theme accordingly
-  darkmode.subscribe((darkmode) => themeHandler(darkmode))
-
-  if (
-    localStorage.theme === "dark" ||
-    (!("theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
-    wrapper.classList.remove("light")
-    document.documentElement.classList.add("dark")
-    localStorage.setItem("theme", "dark")
-    darkmode.set(true)
-  } else {
-    document.documentElement.classList.remove("dark")
-    localStorage.removeItem("theme")
-    darkmode.set(false)
-  }
-</script>
