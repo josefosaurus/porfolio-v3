@@ -8,9 +8,10 @@ interface Props {
   rows?: string
   square?: boolean
   custom?: string
+  target?: string
 }
 
-const { link, color, cols, rows, square = true, custom } = Astro.props
+const { link, color, cols, rows, square = true, custom, target } = Astro.props
 ---
 
 <section
@@ -23,7 +24,7 @@ const { link, color, cols, rows, square = true, custom } = Astro.props
     custom,
   ]}
 >
-  <a href={link || "#"} target="_blank">
+  <a href={link || "#"} target={target || "_blank"}>
     <Image
       alt="link"
       src={Link}
