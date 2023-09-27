@@ -1,0 +1,160 @@
+---
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+import { ViewTransitions } from "astro:transitions"
+
+import icon from "../assets/images/favicon.svg"
+import Footer from "../components/Footer.astro"
+import BlogHeader from "../components/blog/header.astro"
+import { getLangFromUrl } from "../i18n/utils"
+import "../../main.css"
+
+const lang = getLangFromUrl(Astro.url)
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Jose Ávila - Software Developer 💻" />
+    <meta name="viewport" content="width=device-width" />
+
+    <meta name="keywords" content="Jose Avila, developer, portfolio" />
+    <meta name="author" content="Jose Avila" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#3498db" />
+    <!-- Specify the theme color for mobile browsers -->
+
+    <!-- Open Graph Meta Tags (for social media sharing) -->
+    <meta property="og:title" content="Jose Avila - Developer Portfolio" />
+    <meta
+      property="og:description"
+      content="Explore the portfolio of Jose Avila, a talented developer."
+    />
+    <meta
+      property="og:image"
+      content="https://joseavila.dev/_astro/me.7836aee2_Z1M9n7Y.webp"
+    />
+    <!-- URL to a representative image -->
+    <meta property="og:url" content="https://joseavila.dev" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card Meta Tags (for Twitter sharing) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@josefosaurus" />
+    <meta name="twitter:title" content="Jose Avila - Developer Portfolio" />
+    <meta
+      name="twitter:description"
+      content="Explore the portfolio of Jose Avila, a talented developer."
+    />
+    <meta
+      name="twitter:image"
+      content="https://joseavila.dev/_astro/me.7836aee2_Z1M9n7Y.webp"
+    />
+
+    <link rel="icon" type="image/svg+xml" href={icon.src} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/acc0890c64.js"
+      crossorigin="anonymous"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N6XE8TKQ51"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag("js", new Date())
+
+      gtag("config", "G-N6XE8TKQ51")
+    </script>
+
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <!-- <ViewTransitions /> -->
+  </head>
+  <body class="bg-slate-200 dark:bg-background text-tex p-8">
+    <BlogHeader />
+    <slot />
+    <Footer />
+    <style is:global>
+      ::-webkit-scrollbar {
+        width: 8px;
+        transition: all;
+      }
+      ::-webkit-scrollbar:hover {
+        width: 15px;
+        transition: all;
+      }
+      ::-webkit-scrollbar-track {
+        background: #3d3d3d56;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #00b61e;
+        transition: all;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #008f18;
+        cursor: pointer;
+        transition: all;
+      }
+      html {
+        font-family: "Lato", sans-serif;
+        background-size: 224px;
+      }
+      code {
+        font-family:
+          Menlo,
+          Monaco,
+          Lucida Console,
+          Liberation Mono,
+          DejaVu Sans Mono,
+          Bitstream Vera Sans Mono,
+          Courier New,
+          monospace;
+      }
+    </style>
+
+    <script>
+      import { darkmode } from "@store/store"
+      const wrapper = document.documentElement
+
+      const themeHandler = (darkmode: boolean) => {
+        if (darkmode) {
+          wrapper.classList.remove("light")
+          wrapper.classList.add("dark")
+        } else {
+          wrapper.classList.remove("dark")
+          wrapper.classList.add("light")
+        }
+      }
+      // Listen to changes in the store, and toggle the theme accordingly
+      darkmode.subscribe((darkmode) => themeHandler(darkmode))
+
+      if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        wrapper.classList.remove("light")
+        document.documentElement.classList.add("dark")
+        localStorage.setItem("theme", "dark")
+        darkmode.set(true)
+      } else {
+        document.documentElement.classList.remove("dark")
+        localStorage.removeItem("theme")
+        darkmode.set(false)
+      }
+    </script>
+  </body>
+</html>

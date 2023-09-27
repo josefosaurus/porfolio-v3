@@ -1,33 +1,12 @@
 ---
-import Layout from "@layouts/Layout.astro"
+import Layout from "@layouts/blogLayout.astro"
+import { BlogHeader } from "../components/blog/header.astro"
 ---
 
 <Layout title="Jose Avila - Blog 💻">
-  <main class="flex flex-col m-2 md:m-5">
-    <!-- <section
-      class="container grid grid-cols-3 gap-2 mx-auto md:my-5 md:grid-cols-4 md:gap-4 xl:px-20"
-    >
-     
-    </section> -->
-    <div
-      class="container bg-black text-white font-sans text-center mx-auto my-[25%]"
-    >
-      <h3
-        class="text-1.5xl font-light tracking-wider text-mainColor inline-block"
-      >
-        COMING SOON
-      </h3>
-      <div
-        class="bar h-3 w-full bg-transparent rounded-full shadow-inner overflow-hidden p-1"
-      >
-        <div
-          class="progress h-full rounded-full bg-mainColor animate-load animation-delay-2s"
-        >
-        </div>
-      </div>
-    </div>
-  </main>
+  <a href="/posts/post-1"> <i class="fa-solid fa-bug-slash"></i></a>
 </Layout>
+
 <style>
   .text-mainColor {
     color: #1abb9c;
