@@ -8,7 +8,7 @@ import { ViewTransitions } from "astro:transitions"
 
 import icon from "../assets/images/favicon.svg"
 import Footer from "../components/Footer.astro"
-import BlogHeader from "../components/blog/header.astro"
+import BlogHeader from "../components/blog/Header.astro"
 import { getLangFromUrl } from "../i18n/utils"
 import "../../main.css"
 
@@ -83,8 +83,10 @@ const lang = getLangFromUrl(Astro.url)
     <!-- <ViewTransitions /> -->
   </head>
   <body class="bg-slate-200 dark:bg-background text-tex p-8">
-    <BlogHeader />
-    <slot />
+    <main class="mb-8 max-w-[1250px] mx-auto">
+      <BlogHeader />
+      <slot />
+    </main>
     <Footer />
     <style is:global>
       ::-webkit-scrollbar {

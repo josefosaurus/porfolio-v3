@@ -1,0 +1,61 @@
+---
+import { Image } from "astro:assets"
+import Layout from "@layouts/BlogLayout.astro"
+import PostCard from "@components/blog/PostCard.astro"
+
+const { frontmatter } = Astro.props
+---
+
+<Layout title={frontmatter.title}>
+  <article class="text-black md:text-text">
+    <div class="cover">
+      <section class="flex justify-between w-full z-10">
+        <div class="meta-info flex gap-4 text-white items-center">
+          <figure
+            class="flex overflow-clip rounded-full bg-slate-300 w-[50px] h-[50px] items-center"
+          >
+            <Image
+              src={frontmatter.image.url}
+              alt={frontmatter.image.alt}
+              height={50}
+              width={50}
+            />
+          </figure>
+          <section>
+            <h3>{frontmatter.author}</h3>
+            <p class="my-0 leading-relaxed">Sofware engineer</p>
+            <p class="my-0 leading-relaxed">
+              {frontmatter.pubDate.slice(0, 10)}
+            </p>
+          </section>
+        </div>
+        <div class="social flex items-center gap-2">
+          <a
+            class="block text-black fa-brands bg-accent fa-twitter p-2 rounded-full hover:text-white"
+          ></a>
+          <a
+            class="block text-black fa-brands bg-accent fa-linkedin-in p-2 rounded-full hover:text-white"
+          ></a>
+        </div>
+      </section>
+      <div class="cover my-8 z-10">
+        <PostCard square={false} custom="h-[550px]" />
+      </div>
+      <span
+        class="block absolute -z-10 top-0 left-0 bg-[#434343] w-full h-[500px]"
+      ></span>
+    </div>
+    <section class="content z-10 max-w-[90%] mx-auto">
+      <h2 class="text-xl font-bold italic">{frontmatter.description}</h2>
+      <span class="block w-full h-[2px] bg-text my-6"></span>
+      <slot />
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .content img {
+    width: 90%;
+    margin: 2rem auto;
+  }
+</style>

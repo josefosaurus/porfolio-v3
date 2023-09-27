@@ -1,4 +1,5 @@
 ---
+layout: "../../layouts/blog/Post.astro"
 title: "My First Blog Post"
 pubDate: 2022-07-01
 description: "This is the first post of my new Astro blog."
@@ -24,5 +25,7 @@ Welcome to my _new blog_ about learning Astro! Here, I will share my learning jo
 3. **Making Blog Posts**: This is my first blog post! I now have Astro pages and Markdown posts!
 
 ## What's next
+
+![some image](https://images.pexels.com/photos/18157985/pexels-photo-18157985/free-photo-of-madera-ciudad-restaurante-vacaciones.jpeg)
 
 I will finish the Astro tutorial, and then keep adding more posts. Watch this space for more to come.

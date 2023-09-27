@@ -1,10 +1,33 @@
 ---
-import Layout from "@layouts/blogLayout.astro"
-import { BlogHeader } from "../components/blog/header.astro"
+import Layout from "@layouts/BlogLayout.astro"
+import BlogHeader from "../components/blog/Header.astro"
+import PostCard from "@components/blog/PostCard.astro"
 ---
 
 <Layout title="Jose Avila - Blog 💻">
-  <a href="/posts/post-1"> <i class="fa-solid fa-bug-slash"></i></a>
+  <main
+    class="container grid grid-cols-3 md:grid-cols-4 gap-2 mx-auto md:my-5 md:gap-4 xl:px-20"
+  >
+    <div class="flex items-end text-black dark:text-white col-span-3 gap-8">
+      <h1 class="block mb-0 text-6xl italic font-bold leading-none">Da lab</h1>
+      <p>some cool text >></p>
+    </div>
+    <PostCard
+      cols="col-span-3"
+      rows="row-span-2 min-h-[300px]"
+      square={false}
+    />
+    <PostCard cols="col-span-1 md:-mt-16" />
+    <PostCard />
+    <PostCard />
+    <PostCard />
+    <PostCard />
+    <PostCard />
+    <PostCard />
+    <PostCard />
+    <PostCard />
+    <PostCard />
+  </main>
 </Layout>
 
 <style>
