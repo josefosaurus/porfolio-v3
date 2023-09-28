@@ -7,6 +7,7 @@ author: "Astro Learner"
 image:
   url: "https://docs.astro.build/assets/full-logo-light.png"
   alt: "The full Astro logo."
+cover: "https://images.pexels.com/photos/18214082/pexels-photo-18214082/free-photo-of-carretera-luces-anochecer-velocidad.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 tags: ["astro", "blogging", "learning in public"]
 ---
 

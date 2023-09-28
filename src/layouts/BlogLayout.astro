@@ -11,6 +11,7 @@ import Footer from "../components/Footer.astro"
 import BlogHeader from "../components/blog/Header.astro"
 import { getLangFromUrl } from "../i18n/utils"
 import "../../main.css"
+import Reading from "@components/Reading.astro"
 
 const lang = getLangFromUrl(Astro.url)
 ---
@@ -82,11 +83,16 @@ const lang = getLangFromUrl(Astro.url)
     <title>{title}</title>
     <!-- <ViewTransitions /> -->
   </head>
-  <body class="bg-slate-200 dark:bg-background text-tex p-8">
+  <body
+    class="bg-slate-200 dark:bg-background text-text dark:text:text-white p-8"
+  >
     <main class="mb-8 max-w-[1250px] mx-auto">
       <BlogHeader />
       <slot />
     </main>
+    <div class="feats mb-8 max-w-[1250px] mx-auto">
+      <Reading />
+    </div>
     <Footer />
     <style is:global>
       ::-webkit-scrollbar {

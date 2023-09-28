@@ -39,7 +39,11 @@ const { frontmatter } = Astro.props
         </div>
       </section>
       <div class="cover my-8 z-10">
-        <PostCard square={false} custom="h-[550px]" />
+        <PostCard
+          square={false}
+          custom="h-[550px]"
+          background={frontmatter.cover}
+        />
       </div>
       <span
         class="block absolute -z-10 top-0 left-0 bg-[#434343] w-full h-[500px]"
@@ -51,6 +55,24 @@ const { frontmatter } = Astro.props
       <slot />
     </section>
   </article>
+  <div class="foot mt-8">
+    <div class="flex justify-between">
+      <h2 class="text-2xl text-background dark:text-text">Tags</h2>
+      <h2 class="text-2xl text-background dark:text-text dark:hover:text-white">
+        <a href="/blog"><< Back to posts</a>
+      </h2>
+    </div>
+    <span class="block w-full h-[2px] bg-text my-6"></span>
+    <div class="flex gap-2 justify-start">
+      {
+        frontmatter?.tags.map((tag) => (
+          <span class="bg-text text-black dark:text-white py-1 px-4 capitalize rounded-full">
+            {tag}
+          </span>
+        ))
+      }
+    </div>
+  </div>
 </Layout>
 
 <style>
