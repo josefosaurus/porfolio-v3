@@ -11,7 +11,8 @@ import Footer from "../components/Footer.astro"
 import BlogHeader from "../components/blog/Header.astro"
 import { getLangFromUrl } from "../i18n/utils"
 import "../../main.css"
-import Reading from "@components/Reading.astro"
+import Reading from "@components/Reading/Reading"
+import { AudioPlayer } from "@components/audioPlayer/AudioPlayer"
 
 const lang = getLangFromUrl(Astro.url)
 ---
@@ -90,8 +91,11 @@ const lang = getLangFromUrl(Astro.url)
       <BlogHeader />
       <slot />
     </main>
-    <div class="feats mb-8 max-w-[1250px] mx-auto">
-      <Reading />
+    <div
+      class="container grid grid-cols-3 md:grid-cols-4 gap-4 mb-8 max-w-[1200px] mx-auto"
+    >
+      <Reading cols="col-span-4 md:col-span-2" client:only />
+      <AudioPlayer cols="col-span-4 md:col-span-2" client:only />
     </div>
     <Footer />
     <style is:global>
