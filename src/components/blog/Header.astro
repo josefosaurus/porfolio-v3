@@ -1,0 +1,64 @@
+---
+import { Image } from "astro:assets"
+import Logo from "@assets/images/logo.svg"
+
+type Categorie = {
+  slug: string
+  label: string
+}
+
+const categories: Categorie[] = [
+  { slug: "/posts/develop", label: "nerd stuff" },
+  { slug: "/posts/design", label: "aesthetics" },
+  { slug: "/posts/music", label: "music" },
+  { slug: "/posts/other", label: "misc" },
+]
+
+const isActive = (path: string): boolean =>
+  Astro.url.toString() === `${Astro.url}/${path}`
+---
+
+<header class="flex justify-between items-center mb-10">
+  <div class="flex items-center gap-6">
+    <a href="/">
+      <Image alt="Jose Avila" src={Logo} />
+    </a>
+    <ul class="hidden md:flex justify-between gap-4 capitalize">
+      {
+        categories?.map((item) => (
+          <li>
+            <a
+              href={item.label}
+              class:list={[
+                "text-black hover:text-accent dark:text-white dark:hover:text-accent",
+                isActive(item.slug) ? "underline" : "",
+              ]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div class="flex items-center gap-5">
+    <div
+      class="transition search-bar flex gap-4 bg-black p-2 rounded-3xl overflow-hidden w-[50px] hover:w-auto"
+    >
+      <button>
+        <i class="fa-solid block fa-magnifying-glass p-2 rounded-2xl text-white"
+        ></i>
+      </button>
+      <input
+        type="text"
+        class="p-0 b-0 outline-none bg-transparent text-text"
+        placeholder="This is disabled for now"
+      />
+    </div>
+    <a
+      href="/"
+      class="block border-2 border-white hover:border-gray-800 rounded-full text-white hover:text-gray-800 py-2 px-4 shadow-lg"
+      >HomePage</a
+    >
+  </div>
+</header>

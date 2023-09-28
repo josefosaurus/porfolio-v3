@@ -4,7 +4,13 @@ import Cover from "@assets/images/albumcover.png"
 import type { Track } from "./types"
 import { MediaPlayer } from "./MediaPlayer"
 
-export const AudioPlayer = () => {
+export const AudioPlayer = ({
+  cols = "col-span-2 md:col-span-2",
+  rows = "row-span-1 md:row-span-1",
+}: {
+  cols?: string
+  rows?: string
+}) => {
   const apiUrl: string = import.meta.env.PUBLIC_SPOTIFY_API
   const [track, setStrack] = useState<Track>()
   const [loading, setLoading] = useState<boolean>(false)
@@ -30,10 +36,12 @@ export const AudioPlayer = () => {
   }, [])
 
   return (
-    <section className="player-container flex flex-col justify-between relative overflow-clip bg-[#000000] text-white rounded-xl col-span-2 md:col-span-2 row-span-1 md:row-span-1 shadow-md hover:shadow-xl hover:scale-105 transition-all">
+    <section
+      className={`player-container flex flex-col justify-between relative overflow-clip bg-[#000000] text-white rounded-xl ${cols} ${rows} shadow-md hover:shadow-xl hover:scale-105 transition-all`}
+    >
       <header>
         <a
-          href="https://spotify.com"
+          href="https://open.spotify.com/user/1225747414?si=f9bdd0065aba47df"
           target="_blank"
           className="flex justify-start items-center align-middle p-2 pb-0 md:p-4"
         >

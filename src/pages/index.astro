@@ -19,7 +19,7 @@ import Mail from "@assets/images/mail.svg"
 import AlmostMe from "@assets/images/almost_me.gif"
 import Octocat from "@assets/images/octocat.gif"
 import Education from "@components/Education.astro"
-import Reading from "@components/Reading.astro"
+import Reading from "@components/Reading/Reading"
 ---
 
 <Layout title="Jose Avila - Software Developer 💻">
@@ -138,7 +138,7 @@ import Reading from "@components/Reading.astro"
         </div>
       </LinkCard>
       <Education />
-      <Reading />
+      <Reading client:only />
     </div>
   </main>
 </Layout>

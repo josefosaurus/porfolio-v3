@@ -1,0 +1,21 @@
+---
+import Layout from "@layouts/BlogLayout.astro"
+import { Image } from "astro:assets"
+import BlogHeader from "../components/blog/Header.astro"
+import PostCard from "@components/blog/PostCard.astro"
+
+import Kitty from "@assets/images/404.svg"
+---
+
+<Layout title="Jose Avila - Blog 💻">
+  <main
+    class="container grid grid-cols-3 md:grid-cols-4 gap-2 mx-auto md:my-5 md:gap-4 xl:px-20"
+  >
+    <Image
+      src={Kitty}
+      alt="not found"
+      class="col-span-4 mx-auto"
+      draggable="false"
+    />
+  </main>
+</Layout>
