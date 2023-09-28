@@ -65,7 +65,7 @@ export const Reading = ({
               <a
                 href={item.resolved_url}
                 target="_blank"
-                className="text-black dark:text-text flex justify-between border-b mb-2"
+                className="text-black hover:text-text dark:text-text dark:hover:text-black flex justify-between border-b mb-2"
               >
                 <p>
                   <strong className="hover:underline">
