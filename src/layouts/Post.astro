@@ -4,36 +4,40 @@ import Layout from "@layouts/BlogLayout.astro"
 import PostCard from "@components/blog/PostCard.astro"
 
 const { frontmatter } = Astro.props
+
+console.log("FM", frontmatter)
 ---
 
 <Layout title={frontmatter.title}>
-  <article class="text-black md:text-text">
+  <article class="blogpost text-black md:text-text">
     <div class="cover">
       <section class="flex justify-between w-full z-10">
         <div class="meta-info flex gap-4 text-white items-center">
           <figure
-            class="flex overflow-clip rounded-full bg-slate-300 w-[50px] h-[50px] items-center"
+            class="flex overflow-clip rounded-full bg-slate-300 w-[60px] h-[60px] items-center"
           >
             <Image
               src={frontmatter.image.url}
               alt={frontmatter.image.alt}
-              height={50}
-              width={50}
+              height={100}
+              width={100}
             />
           </figure>
-          <section>
-            <h3>{frontmatter.author}</h3>
-            <p class="my-0 leading-relaxed">Sofware engineer</p>
-            <p class="my-0 leading-relaxed">
-              {frontmatter.pubDate.slice(0, 10)}
-            </p>
+          <section class="leading-relaxed">
+            <h3 class="font-bold pb-0">{frontmatter.author}</h3>
+            <span class="block my-0">Sofware engineer</span>
+            <span class="block my-0">
+              {`Published at: ${frontmatter.pubDate?.slice(0, 10)}`}
+            </span>
           </section>
         </div>
         <div class="social flex items-center gap-2">
           <a
+            href="https://x.com/josefosaurus"
             class="block text-black fa-brands bg-accent fa-twitter p-2 rounded-full hover:text-white"
           ></a>
           <a
+            href="https://linkedin.com/in/avilajose"
             class="block text-black fa-brands bg-accent fa-linkedin-in p-2 rounded-full hover:text-white"
           ></a>
         </div>
@@ -42,7 +46,8 @@ const { frontmatter } = Astro.props
         <PostCard
           square={false}
           custom="h-[550px]"
-          background={frontmatter.cover}
+          title={frontmatter.title}
+          background={frontmatter.cover || frontmatter.heroImage}
         />
       </div>
       <span
@@ -59,15 +64,16 @@ const { frontmatter } = Astro.props
     <div class="flex justify-between">
       <h2 class="text-2xl text-background dark:text-text">Tags</h2>
       <h2 class="text-2xl text-background dark:text-text dark:hover:text-white">
-        <a href="/blog"> <i class="fa-solid fa-angles-left"></i></a> Back to
-        posts
+        <a href="/blog">
+          <i class="fa-solid fa-angles-left"></i> Back to posts</a
+        >
       </h2>
     </div>
   </div>
   <span class="block w-full h-[2px] bg-text my-6"></span>
   <div class="flex gap-2 justify-start">
     {
-      frontmatter?.tags.map((tag) => (
+      frontmatter?.tags.map((tag: string) => (
         <span class="bg-text text-black dark:text-white py-1 px-4 capitalize rounded-full">
           {tag}
         </span>
@@ -75,10 +81,3 @@ const { frontmatter } = Astro.props
     }
   </div>
 </Layout>
-
-<style>
-  .content img {
-    width: 90%;
-    margin: 2rem auto;
-  }
-</style>

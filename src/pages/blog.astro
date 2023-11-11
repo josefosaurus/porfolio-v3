@@ -1,42 +1,65 @@
 ---
+import dayjs from "dayjs"
 import Layout from "@layouts/BlogLayout.astro"
 import { Image } from "astro:assets"
-import BlogHeader from "../components/blog/Header.astro"
 import PostCard from "@components/blog/PostCard.astro"
 
 import Kitty from "@assets/images/404.svg"
+
+const allPosts = await Astro.glob("../pages/posts/*.md")
 ---
 
 <Layout title="Jose Avila - Blog 💻">
-  <main
-    class="container grid grid-cols-3 md:grid-cols-4 gap-2 mx-auto md:my-5 md:gap-4 xl:px-20"
-  >
-    <div class="flex items-end text-black dark:text-white col-span-3 gap-8">
-      <h1 class="block mb-0 text-6xl italic font-bold leading-none">Da lab</h1>
-      <p>some cool things (or not) that you can read >></p>
-    </div>
-    <!-- <PostCard
-      cols="col-span-3"
-      rows="row-span-2 min-h-[300px]"
-      square={false}
-    />
-    <PostCard cols="col-span-1 md:-mt-16" />
-    <PostCard />
-    <PostCard />
-    <PostCard />
-    <PostCard />
-    <PostCard />
-    <PostCard />
-    <PostCard />
-    <PostCard />
-    <PostCard /> -->
-    <Image
-      src={Kitty}
-      alt="not found"
-      class="col-span-4 mx-auto"
-      draggable="false"
-    />
-  </main>
+  <section class="container grid grid-cols-3 md:grid-cols-4 gap-4">
+    {
+      !allPosts ? (
+        <Image
+          src={Kitty}
+          alt="not found"
+          class="col-span-4 mx-auto"
+          draggable="false"
+        />
+      ) : (
+        allPosts.map((post, index) => {
+          if (index === 0) {
+            return (
+              <PostCard
+                cols="col-span-3"
+                rows="row-span-2 min-h-[300px]"
+                square={false}
+                link={`/posts/${post.frontmatter.slug}`}
+                title={post.frontmatter.title}
+                background={post.frontmatter.cover}
+                createdAt={`${dayjs(post.frontmatter.pubDate, ["DD-MM-YYYY"])}`}
+                tags={post.frontmatter.tags}
+              />
+            )
+          } else if (index === 1 || index == 2) {
+            return (
+              <PostCard
+                cols="col-span-1 md:-mt-16"
+                title={post.frontmatter.title}
+                link={`/posts/${post.frontmatter.slug}`}
+                background={post.frontmatter.cover}
+                createdAt={`${dayjs(post.frontmatter.pubDate, ["DD-MM-YYYY"])}`}
+                tags={post.frontmatter.tags}
+              />
+            )
+          } else {
+            return (
+              <PostCard
+                title={post.frontmatter.title}
+                link={`/posts/${post.frontmatter.slug}`}
+                background={post.frontmatter.herocover}
+                createdAt={`${dayjs(post.frontmatter.pubDate, ["DD-MM-YYYY"])}`}
+                tags={post.frontmatter.tags}
+              />
+            )
+          }
+        })
+      )
+    }
+  </section>
 </Layout>
 
 <style>

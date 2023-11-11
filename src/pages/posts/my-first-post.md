@@ -1,19 +1,23 @@
 ---
-layout: "../../layouts/blog/Post.astro"
-title: "My First Blog Post"
+layout: ../../layouts/Post.astro
+title: My First Blog Post
 pubDate: 2022-07-01
-description: "This is the first post of my new Astro blog."
-author: "Astro Learner"
+description: This is the first post of my new Astro blog.
+author: Astro Learner
 image:
-  url: "https://docs.astro.build/assets/full-logo-light.png"
-  alt: "The full Astro logo."
-cover: "https://images.pexels.com/photos/18214082/pexels-photo-18214082/free-photo-of-carretera-luces-anochecer-velocidad.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-tags: ["astro", "blogging", "learning in public"]
+  url: https://docs.astro.build/assets/full-logo-light.png
+  alt: The full Astro logo.
+cover: https://images.pexels.com/photos/18214082/pexels-photo-18214082/free-photo-of-carretera-luces-anochecer-velocidad.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1
+tags:
+  - astro
+  - blogging
+  - learning in public
+slug: my-first-post
+heroImage: /favicon.svg
+type: default
 ---
 
 # My First Blog Post
-
-Published on: 2022-07-01
 
 Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website.
 
@@ -30,3 +34,4 @@ Welcome to my _new blog_ about learning Astro! Here, I will share my learning jo
 ![some image](https://images.pexels.com/photos/18157985/pexels-photo-18157985/free-photo-of-madera-ciudad-restaurante-vacaciones.jpeg)
 
 I will finish the Astro tutorial, and then keep adding more posts. Watch this space for more to come.
+and other shit
