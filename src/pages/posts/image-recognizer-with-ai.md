@@ -3,7 +3,7 @@ title: Image recognizer with AI
 description: With tensorFlow we can teach to an AI to recognize elements that you label
 author: Jose Avila
 image:
-  url: https://z-p3-scontent.fscl18-1.fna.fbcdn.net/v/t39.30808-1/324755400_843124760082027_343765659561409911_n.jpg?stp=cp0_dst-jpg_p60x60&_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeF_62iUbem_1p85GhFIx3h7pNLvzYBxk6Wk0u_NgHGTpeiQ2kyZ32TkLuis5gvpXT0&_nc_ohc=pZewguab8pYAX-7LmWz&_nc_ht=z-p3-scontent.fscl18-1.fna&oh=00_AfAqmhnUGHhSIMXUuv4mDmr22jMSibJ6EhJ3TzwleKOzag&oe=652DDE12
+  url: https://res.cloudinary.com/dr5n435ix/image/upload/v1699750914/325180899_944616743402104_8996584747716971714_n_a8qtym.jpg
   alt: Jose Avila
 tags:
   - Artificial Intelligence
