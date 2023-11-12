@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets"
 import Thumb from "@assets/images/thumb.png"
 interface Props {
   link?: string
@@ -10,9 +9,14 @@ interface Props {
   custom?: string
   target?: string
   background?: string
+  createdAt?: string
+  tags: string[]
+  title: string
 }
 
 const bgMok = Thumb.src
+
+const props = Astro.props
 
 const {
   link,
@@ -21,14 +25,16 @@ const {
   rows,
   square = true,
   custom,
-  target,
+  createdAt,
+  title = "example with a long title and added more text to see if overlap omg",
   background = bgMok,
-} = Astro.props
+  tags = [],
+} = props
 ---
 
 <main
   class:list={[
-    "relative flex flex-col items-center justify-center rounded-xl xs:h-auto relative overflow-clip p-2 md:p-4 shadow-md hover:shadow-xl transition-all bg-cover backdrop-blur-sm",
+    "relative flex flex-col items-center justify-center rounded-xl xs:h-auto relative overflow-clip p-2 md:p-4 shadow-md hover:shadow-xl transition-all bg-cover backdrop-blur-sm bg-center",
     color || "bg-white",
     rows,
     cols || "col-span-1",
@@ -38,16 +44,19 @@ const {
   style=`background-image:
   url(${background})`
 >
-  <a href="/posts/post-1" class="block w-full h-full">
-    <div class="meta flex flex-col gap-2 absolute left-2 top-2 z-10 text-xs">
-      <span class="date bg-white py-2 px-2 rounded-2xl italic w-fit shadow-md"
-        >12/12/12</span
-      >
-      <span
-        class="tags border-2 border-text text-text py-2 px-2 bg-transparent rounded-2xl shadow-md shadow-text w-fit hidden md:block"
-        >tags, tags, tags</span
-      >
-    </div>
+  <a href={link} class="block w-full h-full">
+    {
+      createdAt && (
+        <div class="meta flex flex-col gap-2 absolute left-2 top-2 z-10 text-xs">
+          <span class="date bg-white py-2 px-2 rounded-2xl italic w-fit shadow-md">
+            {createdAt}
+          </span>
+          <span class="tags border-2 border-text text-text py-2 px-2 bg-transparent rounded-2xl shadow-md shadow-text w-fit hidden md:block">
+            {tags?.map((tag) => `${tag}, `)}
+          </span>
+        </div>
+      )
+    }
     <h1
       class:list={[
         "absolute z-10 bg-white p-2 rounded-lg shadow-md max-w-[70%] md:max-w-[50%] truncate",
@@ -55,7 +64,7 @@ const {
         square ? "text-sm" : "text-2xl",
       ]}
     >
-      example with a long title and added more text to see if overlap omg
+      {title}
     </h1>
   </a>
 </main>

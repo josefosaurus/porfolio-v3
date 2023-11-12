@@ -87,56 +87,21 @@ const lang = getLangFromUrl(Astro.url)
   <body
     class="bg-slate-200 dark:bg-background text-text dark:text:text-white p-8"
   >
-    <main class="mb-8 max-w-[1250px] mx-auto">
-      <BlogHeader />
+    <BlogHeader />
+    <main class="container mx-auto my-5">
+      <div class="flex items-end text-black dark:text-white col-span-3 gap-8">
+        <h1 class="block mb-0 text-6xl italic font-bold leading-none">
+          Da lab
+        </h1>
+        <p>some cool things (or not) that you can read >></p>
+      </div>
       <slot />
     </main>
-    <div
-      class="container grid grid-cols-3 md:grid-cols-4 gap-4 mb-8 max-w-[1200px] mx-auto"
-    >
+    <div class="container grid grid-cols-3 md:grid-cols-4 gap-4 mb-8 mx-auto">
       <Reading cols="col-span-4 md:col-span-2" client:only />
       <AudioPlayer cols="col-span-4 md:col-span-2" client:only />
     </div>
     <Footer />
-    <style is:global>
-      ::-webkit-scrollbar {
-        width: 8px;
-        transition: all;
-      }
-      ::-webkit-scrollbar:hover {
-        width: 15px;
-        transition: all;
-      }
-      ::-webkit-scrollbar-track {
-        background: #3d3d3d56;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #00b61e;
-        transition: all;
-        border-radius: 10px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #008f18;
-        cursor: pointer;
-        transition: all;
-      }
-      html {
-        font-family: "Lato", sans-serif;
-        background-size: 224px;
-      }
-      code {
-        font-family:
-          Menlo,
-          Monaco,
-          Lucida Console,
-          Liberation Mono,
-          DejaVu Sans Mono,
-          Bitstream Vera Sans Mono,
-          Courier New,
-          monospace;
-      }
-    </style>
-
     <script>
       import { darkmode } from "@store/store"
       const wrapper = document.documentElement
@@ -170,3 +135,115 @@ const lang = getLangFromUrl(Astro.url)
     </script>
   </body>
 </html>
+
+<style is:global>
+  ::-webkit-scrollbar {
+    width: 8px;
+    transition: all;
+  }
+  ::-webkit-scrollbar:hover {
+    width: 15px;
+    height: 15px;
+    transition: all;
+  }
+  ::-webkit-scrollbar-track {
+    background: #3d3d3d56;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #00b61e;
+    transition: all;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #008f18;
+    cursor: pointer;
+    transition: all;
+  }
+  html {
+    font-family: "Lato", sans-serif;
+    background-size: 224px;
+  }
+
+  .blogpost .content h1,
+  .content h2,
+  .content h3,
+  .content h4 {
+    font-weight: bold;
+    margin: 1rem 0;
+  }
+
+  .blogpost .content p {
+    margin-top: 1rem;
+  }
+
+  .blogpost .content a {
+    text-decoration: underline;
+  }
+
+  .blogpost .content h1 {
+    font-size: 2rem;
+  }
+
+  .blogpost .content h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .blogpost .content h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .blogpost .content img {
+    margin: 0.1rem auto;
+  }
+
+  .blogpost .content .astro-code {
+    margin: 0.1rem auto;
+    padding: 1rem;
+    border-radius: 12px;
+    background: #0c1021 !important;
+  }
+
+  .blogpost .content ol {
+    counter-reset: list;
+  }
+
+  code {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+  }
+
+  p > code {
+    background: #0c1021;
+    padding: 1rem 1.8rem;
+    border-radius: 12px;
+    width: 100%;
+    display: block;
+  }
+
+  .astro-code {
+    margin: 1rem auto !important;
+    display: block;
+  }
+
+  .astro-code::before,
+  p > code::before {
+    content: "Code";
+    display: block;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    background: rgba(255, 255, 255, 0.158);
+    border-radius: 10px;
+    padding: 0.2rem 0.5rem;
+    width: fit-content;
+  }
+</style>

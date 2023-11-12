@@ -1,3 +1,4 @@
+/// <reference path="../.astro/types.d.ts" />
 declare global {
   var myString: string;
   function myFunction(): boolean;
