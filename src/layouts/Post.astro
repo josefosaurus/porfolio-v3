@@ -4,8 +4,6 @@ import Layout from "@layouts/BlogLayout.astro"
 import PostCard from "@components/blog/PostCard.astro"
 
 const { frontmatter } = Astro.props
-
-console.log("FM", frontmatter)
 ---
 
 <Layout title={frontmatter.title}>
@@ -81,3 +79,117 @@ console.log("FM", frontmatter)
     }
   </div>
 </Layout>
+
+<style is:global>
+  .blogpost .content h1,
+  .content h2,
+  .content h3,
+  .content h4 {
+    font-weight: bold;
+    margin: 1rem 0;
+  }
+
+  .blogpost .content p {
+    margin-top: 1rem;
+  }
+
+  .blogpost .content a {
+    text-decoration: underline;
+  }
+
+  .blogpost .content h1 {
+    font-size: 2rem;
+  }
+
+  .blogpost .content h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .blogpost .content h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .blogpost .content img {
+    margin: 0.1rem auto;
+  }
+
+  .blogpost .content .astro-code {
+    margin: 0.1rem auto;
+    padding: 1rem;
+    border-radius: 12px;
+    background: #0c1021 !important;
+  }
+
+  .blogpost .content ol {
+    counter-reset: list;
+  }
+
+  .blogpost pre {
+    position: relative;
+  }
+
+  .blogpost code {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+  }
+
+  .blogpost p > code {
+    background: #0c1021;
+    padding: 1rem 1.8rem;
+    border-radius: 12px;
+    width: 100%;
+    display: block;
+  }
+
+  .astro-code {
+    margin: 1rem auto !important;
+    display: block;
+  }
+
+  .blogpost pre > i {
+    top: 20px;
+    right: 20px;
+    position: absolute;
+  }
+
+  .blogpost pre > i:before {
+    font-size: 1.5rem;
+  }
+
+  .blogpost pre > i:hover {
+    color: #00b61e;
+    cursor: pointer;
+  }
+
+  .blogpost ul {
+    list-style: circle !important;
+    padding-left: 2rem !important;
+  }
+
+  .blogpost ol {
+    list-style: decimal !important;
+    padding-left: 2rem !important;
+  }
+
+  .blogpost .astro-code::before,
+  p > code::before {
+    content: "Code";
+    display: block;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    background: rgba(255, 255, 255, 0.158);
+    border-radius: 10px;
+    padding: 0.2rem 0.5rem;
+    width: fit-content;
+  }
+</style>

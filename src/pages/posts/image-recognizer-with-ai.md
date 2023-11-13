@@ -63,7 +63,7 @@ We create a basic nodeJS folder structure, where the all the site data is in the
 
 At the begging, we gonna create the view for the app. I choose the [library of material design](https://m3.material.io/) to create a quick and ease to do because doesn't need something fancy.
 
-![layout image](/ai_image_recognizer/ai_layout.png)
+![layout image](https://res.cloudinary.com/dr5n435ix/image/upload/v1699751719/Screenshot_2023-11-11_221449_zbb9ba.png)
 
 ### And the code
 
