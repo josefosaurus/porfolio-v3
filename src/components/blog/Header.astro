@@ -19,19 +19,19 @@ const isActive = (path: string): boolean =>
   Astro.url.toString() === `${Astro.url}/${path}`
 ---
 
-<header class="flex container justify-between items-center mx-auto mb-10">
+<header class="flex container justify-between items-center mx-auto mb-20">
   <div class="flex items-center gap-6">
     <a href="/">
       <Image alt="Jose Avila" src={Logo} />
     </a>
-    <ul class="hidden md:flex justify-between gap-4 capitalize">
+    <ul class="hidden md:flex justify-between gap-4 capitalize list-none">
       {
         categories?.map((item) => (
           <li>
             <a
               href={item.slug}
               class:list={[
-                "text-black hover:text-accent dark:text-white dark:hover:text-accent",
+                "text-black hover:text-accent dark:text-white dark:hover:text-accent ",
                 isActive(item.slug) ? "underline" : "",
               ]}
             >
