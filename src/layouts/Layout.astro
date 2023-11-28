@@ -76,10 +76,10 @@ const lang = getLangFromUrl(Astro.url)
 
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <!-- <ViewTransitions /> -->
+    <ViewTransitions />
   </head>
   <body class="bg-slate-200 dark:bg-background text-text dark:text-white">
-    <slot />
+    <slot transition:name="slide" />
     <Footer />
     <style is:global>
       ::-webkit-scrollbar {
