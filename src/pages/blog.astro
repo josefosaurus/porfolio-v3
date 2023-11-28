@@ -10,7 +10,10 @@ const allPosts = await Astro.glob("../pages/posts/*.md")
 ---
 
 <Layout title="Jose Avila - Blog 💻">
-  <section class="container grid grid-cols-3 md:grid-cols-4 gap-4">
+  <section
+    class="container grid grid-cols-3 md:grid-cols-4 gap-4"
+    transition:name="slide"
+  >
     {
       !allPosts ? (
         <Image
@@ -60,43 +63,42 @@ const allPosts = await Astro.glob("../pages/posts/*.md")
       )
     }
   </section>
+  <style>
+    .text-mainColor {
+      color: #1abb9c;
+    }
+
+    .bg-black {
+      background-color: #222222;
+    }
+
+    .bg-mainColor {
+      background-color: #1abb9c;
+    }
+
+    .shadow-inner {
+      box-shadow: inset 0px 0px 8px rgba(50, 50, 50, 1);
+    }
+
+    .animate-load {
+      animation: load 3s linear infinite;
+    }
+
+    .animation-delay-2s {
+      animation-delay: 2s;
+    }
+
+    @keyframes load {
+      0% {
+        width: 0%;
+      }
+      50% {
+        width: 100%;
+      }
+      100% {
+        width: 0%;
+        float: right;
+      }
+    }
+  </style>
 </Layout>
-
-<style>
-  .text-mainColor {
-    color: #1abb9c;
-  }
-
-  .bg-black {
-    background-color: #222222;
-  }
-
-  .bg-mainColor {
-    background-color: #1abb9c;
-  }
-
-  .shadow-inner {
-    box-shadow: inset 0px 0px 8px rgba(50, 50, 50, 1);
-  }
-
-  .animate-load {
-    animation: load 3s linear infinite;
-  }
-
-  .animation-delay-2s {
-    animation-delay: 2s;
-  }
-
-  @keyframes load {
-    0% {
-      width: 0%;
-    }
-    50% {
-      width: 100%;
-    }
-    100% {
-      width: 0%;
-      float: right;
-    }
-  }
-</style>

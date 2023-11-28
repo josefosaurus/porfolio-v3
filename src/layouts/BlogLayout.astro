@@ -82,7 +82,7 @@ const lang = getLangFromUrl(Astro.url)
 
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <!-- <ViewTransitions /> -->
+    <ViewTransitions />
   </head>
   <body
     class="bg-slate-200 dark:bg-background text-text dark:text:text-white p-8"
@@ -135,47 +135,45 @@ const lang = getLangFromUrl(Astro.url)
         darkmode.set(false)
       }
     </script>
-  </body>
-</html>
-
-<script>
-  // add a icon to the code blocks to copy the code inside
-  const codeBlocks = document.querySelectorAll("code")
-  codeBlocks.forEach((codeBlock) => {
-    const icon = document.createElement("i")
-    icon.classList.add("fas", "fa-copy", "text-xs", "ml-2", "cursor-pointer")
-    icon.addEventListener("click", () => {
-      navigator.clipboard.writeText(codeBlock.innerText)
+  </body><script>
+    // add a icon to the code blocks to copy the code inside
+    const codeBlocks = document.querySelectorAll("code")
+    codeBlocks.forEach((codeBlock) => {
+      const icon = document.createElement("i")
+      icon.classList.add("fas", "fa-copy", "text-xs", "ml-2", "cursor-pointer")
+      icon.addEventListener("click", () => {
+        navigator.clipboard.writeText(codeBlock.innerText)
+      })
+      codeBlock?.parentNode?.insertBefore(icon, codeBlock.nextSibling)
     })
-    codeBlock?.parentNode?.insertBefore(icon, codeBlock.nextSibling)
-  })
-</script>
+  </script>
 
-<style is:global>
-  ::-webkit-scrollbar {
-    width: 8px;
-    transition: all;
-  }
-  ::-webkit-scrollbar:hover {
-    width: 15px;
-    height: 15px;
-    transition: all;
-  }
-  ::-webkit-scrollbar-track {
-    background: #3d3d3d56;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #00b61e;
-    transition: all;
-    border-radius: 10px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #008f18;
-    cursor: pointer;
-    transition: all;
-  }
-  html {
-    font-family: "Lato", sans-serif;
-    background-size: 224px;
-  }
-</style>
+  <style is:global>
+    ::-webkit-scrollbar {
+      width: 8px;
+      transition: all;
+    }
+    ::-webkit-scrollbar:hover {
+      width: 15px;
+      height: 15px;
+      transition: all;
+    }
+    ::-webkit-scrollbar-track {
+      background: #3d3d3d56;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #00b61e;
+      transition: all;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #008f18;
+      cursor: pointer;
+      transition: all;
+    }
+    html {
+      font-family: "Lato", sans-serif;
+      background-size: 224px;
+    }
+  </style>
+</html>
