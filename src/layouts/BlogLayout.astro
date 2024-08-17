@@ -4,15 +4,14 @@ interface Props {
 }
 
 const { title } = Astro.props
-import { ViewTransitions } from "astro:transitions"
 
-import icon from "../assets/images/favicon.svg"
-import Footer from "../components/Footer.astro"
-import BlogHeader from "../components/blog/Header.astro"
-import { getLangFromUrl } from "../i18n/utils"
-import "../../main.css"
-import Reading from "@components/Reading/Reading"
-import { AudioPlayer } from "@components/audioPlayer/AudioPlayer"
+import icon from '../assets/images/favicon.svg'
+import Footer from '../components/Footer.astro'
+import BlogHeader from '../components/blog/Header.astro'
+import { getLangFromUrl } from '../i18n/utils'
+import '../../main.css'
+import Reading from '@components/Reading/Reading'
+import { AudioPlayer } from '@components/audioPlayer/AudioPlayer'
 
 const lang = getLangFromUrl(Astro.url)
 ---
@@ -20,128 +19,187 @@ const lang = getLangFromUrl(Astro.url)
 <!doctype html>
 <html lang={lang}>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Jose Ávila - Software Developer 💻" />
-    <meta name="viewport" content="width=device-width" />
+    <meta charset='UTF-8' />
+    <meta
+      name='description'
+      content='Jose Ávila - Software Developer 💻'
+    />
+    <meta
+      name='viewport'
+      content='width=device-width'
+    />
 
-    <meta name="keywords" content="Jose Avila, developer, portfolio" />
-    <meta name="author" content="Jose Avila" />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#3498db" />
+    <meta
+      name='keywords'
+      content='Jose Avila, developer, portfolio'
+    />
+    <meta
+      name='author'
+      content='Jose Avila'
+    />
+    <meta
+      name='robots'
+      content='index, follow'
+    />
+    <meta
+      name='theme-color'
+      content='#3498db'
+    />
     <!-- Specify the theme color for mobile browsers -->
 
     <!-- Open Graph Meta Tags (for social media sharing) -->
-    <meta property="og:title" content="Jose Avila - Developer Portfolio" />
     <meta
-      property="og:description"
-      content="Explore the portfolio of Jose Avila, a talented developer."
+      property='og:title'
+      content='Jose Avila - Developer Portfolio'
     />
     <meta
-      property="og:image"
-      content="https://joseavila.dev/_astro/me.7836aee2_Z1M9n7Y.webp"
+      property='og:description'
+      content='Explore the portfolio of Jose Avila, a talented developer.'
+    />
+    <meta
+      property='og:image'
+      content='https://joseavila.dev/_astro/me.7836aee2_Z1M9n7Y.webp'
     />
     <!-- URL to a representative image -->
-    <meta property="og:url" content="https://joseavila.dev" />
-    <meta property="og:type" content="website" />
+    <meta
+      property='og:url'
+      content='https://joseavila.dev'
+    />
+    <meta
+      property='og:type'
+      content='website'
+    />
 
     <!-- Twitter Card Meta Tags (for Twitter sharing) -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@josefosaurus" />
-    <meta name="twitter:title" content="Jose Avila - Developer Portfolio" />
     <meta
-      name="twitter:description"
-      content="Explore the portfolio of Jose Avila, a talented developer."
+      name='twitter:card'
+      content='summary_large_image'
     />
     <meta
-      name="twitter:image"
-      content="https://joseavila.dev/_astro/me.7836aee2_Z1M9n7Y.webp"
+      name='twitter:site'
+      content='@josefosaurus'
+    />
+    <meta
+      name='twitter:title'
+      content='Jose Avila - Developer Portfolio'
+    />
+    <meta
+      name='twitter:description'
+      content='Explore the portfolio of Jose Avila, a talented developer.'
+    />
+    <meta
+      name='twitter:image'
+      content='https://joseavila.dev/_astro/me.7836aee2_Z1M9n7Y.webp'
     />
 
-    <link rel="icon" type="image/svg+xml" href={icon.src} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;900&display=swap"
-      rel="stylesheet"
+      rel='icon'
+      type='image/svg+xml'
+      href={icon.src}
+    />
+    <link
+      rel='preconnect'
+      href='https://fonts.googleapis.com'
+    />
+    <link
+      rel='preconnect'
+      href='https://fonts.gstatic.com'
+      crossorigin
+    />
+    <link
+      href='https://fonts.googleapis.com/css2?family=Lato:wght@300;400;900&display=swap'
+      rel='stylesheet'
     />
     <script
-      src="https://kit.fontawesome.com/acc0890c64.js"
-      crossorigin="anonymous"></script>
+      src='https://kit.fontawesome.com/acc0890c64.js'
+      crossorigin='anonymous'
+    ></script>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N6XE8TKQ51"
+    <script
+      async
+      src='https://www.googletagmanager.com/gtag/js?id=G-N6XE8TKQ51'
     ></script>
     <script>
       window.dataLayer = window.dataLayer || []
       function gtag() {
         dataLayer.push(arguments)
       }
-      gtag("js", new Date())
+      gtag('js', new Date())
 
-      gtag("config", "G-N6XE8TKQ51")
+      gtag('config', 'G-N6XE8TKQ51')
     </script>
 
-    <meta name="generator" content={Astro.generator} />
+    <meta
+      name='generator'
+      content={Astro.generator}
+    />
     <title>{title}</title>
-    <ViewTransitions />
   </head>
   <body
-    class="bg-slate-200 dark:bg-background text-text dark:text:text-white p-8"
-  >
+    class='bg-slate-200 dark:bg-background text-text dark:text:text-white p-8'>
     <BlogHeader />
-    <main class="container mx-auto my-5">
+    <main class='container mx-auto my-5'>
       <div
-        class="flex items-end text-black dark:text-white col-span-3 gap-8 my-[2rem]"
-      >
-        <h1 class="block mb-0 text-6xl italic font-bold leading-none">
+        class='flex items-end text-black dark:text-white col-span-3 gap-8 my-[2rem]'>
+        <h1 class='block mb-0 text-6xl italic font-bold leading-none'>
           Da lab
         </h1>
         <p>some cool things (or not) that you can read >></p>
       </div>
       <slot />
     </main>
-    <div class="container grid grid-cols-3 md:grid-cols-4 gap-4 mb-8 mx-auto">
-      <Reading cols="col-span-4 md:col-span-2" client:only />
-      <AudioPlayer cols="col-span-4 md:col-span-2" client:only />
+    <div class='container grid grid-cols-3 md:grid-cols-4 gap-4 mb-8 mx-auto'>
+      <Reading
+        cols='col-span-4 md:col-span-2'
+        client:only
+      />
+      <AudioPlayer
+        cols='col-span-4 md:col-span-2'
+        client:only
+      />
     </div>
     <Footer />
     <script>
-      import { darkmode } from "@store/store"
+      import { darkmode } from '@store/store'
       const wrapper = document.documentElement
 
       const themeHandler = (darkmode: boolean) => {
         if (darkmode) {
-          wrapper.classList.remove("light")
-          wrapper.classList.add("dark")
+          wrapper.classList.remove('light')
+          wrapper.classList.add('dark')
         } else {
-          wrapper.classList.remove("dark")
-          wrapper.classList.add("light")
+          wrapper.classList.remove('dark')
+          wrapper.classList.add('light')
         }
       }
       // Listen to changes in the store, and toggle the theme accordingly
-      darkmode.subscribe((darkmode) => themeHandler(darkmode))
+      darkmode.subscribe(darkmode => themeHandler(darkmode))
 
       if (
-        localStorage.theme === "dark" ||
-        (!("theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
       ) {
-        wrapper.classList.remove("light")
-        document.documentElement.classList.add("dark")
-        localStorage.setItem("theme", "dark")
+        wrapper.classList.remove('light')
+        document.documentElement.classList.add('dark')
+        localStorage.setItem('theme', 'dark')
         darkmode.set(true)
       } else {
-        document.documentElement.classList.remove("dark")
-        localStorage.removeItem("theme")
+        document.documentElement.classList.remove('dark')
+        localStorage.removeItem('theme')
         darkmode.set(false)
       }
     </script>
-  </body><script>
+  </body>
+
+  <!-- codeblocks -->
+  <script>
     // add a icon to the code blocks to copy the code inside
-    const codeBlocks = document.querySelectorAll("code")
-    codeBlocks.forEach((codeBlock) => {
-      const icon = document.createElement("i")
-      icon.classList.add("fas", "fa-copy", "text-xs", "ml-2", "cursor-pointer")
-      icon.addEventListener("click", () => {
+    const codeBlocks = document.querySelectorAll('code')
+    codeBlocks.forEach(codeBlock => {
+      const icon = document.createElement('i')
+      icon.classList.add('fas', 'fa-copy', 'text-xs', 'ml-2', 'cursor-pointer')
+      icon.addEventListener('click', () => {
         navigator.clipboard.writeText(codeBlock.innerText)
       })
       codeBlock?.parentNode?.insertBefore(icon, codeBlock.nextSibling)
@@ -172,7 +230,7 @@ const lang = getLangFromUrl(Astro.url)
       transition: all;
     }
     html {
-      font-family: "Lato", sans-serif;
+      font-family: 'Lato', sans-serif;
       background-size: 224px;
     }
   </style>

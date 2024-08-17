@@ -1,69 +1,66 @@
 ---
-import { Image } from "astro:assets"
-import Layout from "@layouts/Layout.astro"
-import About from "@components/About.astro"
-import ThemeSwitch from "@components/ThemeSwitch.astro"
-import Language from "@components/Language.astro"
-import BasicInfo from "@components/BasicInfo.astro"
-import LinkCard from "@components/LinkCard.astro"
-import Experience from "@components/Experience.astro"
-import Skills from "@components/Skills.astro"
-import { Weather } from "@components/Weather/Weather"
-import { AudioPlayer } from "@components/audioPlayer/AudioPlayer"
+import { Image } from 'astro:assets'
+import Layout from '@layouts/Layout.astro'
+import About from '@components/About.astro'
+import ThemeSwitch from '@components/ThemeSwitch.astro'
+import Language from '@components/Language.astro'
+import BasicInfo from '@components/BasicInfo.astro'
+import LinkCard from '@components/LinkCard.astro'
+import Experience from '@components/Experience.astro'
+import Skills from '@components/Skills.astro'
+import { Weather } from '@components/Weather/Weather'
+import { AudioPlayer } from '@components/audioPlayer/AudioPlayer'
 
-import LinkedIn from "@assets/images/linkedin.svg"
-import Download from "@assets/images/download.svg"
-import Twitter from "@assets/images/twitter.svg"
-import Dribble from "@assets/images/dribbble.svg"
-import Mail from "@assets/images/mail.svg"
-import AlmostMe from "@assets/images/almost_me.gif"
-import Octocat from "@assets/images/octocat.gif"
-import Education from "@components/Education.astro"
-import Reading from "@components/Reading/Reading"
+import LinkedIn from '@assets/images/linkedin.svg'
+import Download from '@assets/images/download.svg'
+import Twitter from '@assets/images/twitter.svg'
+import Dribble from '@assets/images/dribbble.svg'
+import Mail from '@assets/images/mail.svg'
+import AlmostMe from '@assets/images/almost_me.gif'
+import Octocat from '@assets/images/octocat.gif'
+import Education from '@components/Education.astro'
+import Reading from '@components/Reading/Reading'
 ---
 
-<Layout title="Jose Avila - Software Developer 💻">
-  <main class="flex flex-col m-2 md:m-5" transition:name="slide">
+<Layout title='Jose Avila - Software Developer 💻'>
+  <main class='flex flex-col m-2 md:m-5'>
     <div
-      class="container grid grid-cols-3 gap-2 mx-auto md:my-5 md:grid-cols-4 md:gap-4 xl:px-20"
-    >
+      class='container grid grid-cols-3 gap-2 mx-auto md:my-5 md:grid-cols-4 md:gap-4 xl:px-20'>
       <About />
       <Language />
       <ThemeSwitch />
       <BasicInfo />
       <LinkCard
-        color="bg-[#FFFFFF] dark:bg-[#E3E3E3]"
-        link="https://www.linkedin.com/in/avilajose/"
-      >
-        <div class="flex flex-col justify-center items-center">
+        color='bg-[#FFFFFF] dark:bg-[#E3E3E3]'
+        link='https://www.linkedin.com/in/avilajose/'>
+        <div class='flex flex-col justify-center items-center'>
           <Image
-            alt="linkedin"
+            alt='linkedin'
             src={LinkedIn}
-            class="w-14 h-14 md:w-20 md:h-20 mb-6"
+            class='w-14 h-14 md:w-20 md:h-20 mb-6'
           />
-          <p class="text-base md:text-2xl">Profile</p>
+          <p class='text-base md:text-2xl'>Profile</p>
         </div>
       </LinkCard>
       <LinkCard
-        cols="col-span-2 md:col-span-2"
-        rows="row-span-1"
-        color="bg-black"
+        cols='col-span-2 md:col-span-2'
+        rows='row-span-1'
+        color='bg-black'
         square={false}
-        custom="lab"
-        link="/blog"
-        target="_self"
-      >
-        <div class="flex items-center">
+        custom='lab'
+        link='/blog'
+        target='_self'>
+        <div class='flex items-center'>
           <Image
             src={AlmostMe}
-            alt="code error"
-            class="w-12 md:w-[6rem] lg:w-[10rem]"
+            alt='code error'
+            class='w-12 md:w-[6rem] lg:w-[10rem]'
           />
           <div>
-            <h2 class="text-2xl md-text-3xl lg:text-5xl font-bold text-white">
+            <h2 class='text-2xl md-text-3xl lg:text-5xl font-bold text-white'>
               Lab
             </h2>
-            <p class="text-white text-xs md:text-base">
+            <p class='text-white text-xs md:text-base'>
               Here you can view some of my personal work and experiments, and
               why not? some fails
             </p>
@@ -71,24 +68,23 @@ import Reading from "@components/Reading/Reading"
         </div>
       </LinkCard>
       <LinkCard
-        cols="col-span-2 md:col-span-2"
+        cols='col-span-2 md:col-span-2'
         square={false}
-        link="https://github.com/j-avila"
-      >
+        link='https://github.com/j-avila'>
         <div>
-          <content class="block text-black z-10">
-            <h2 class="text-2xl md:text-3xl lg:text-5xl font-bold mb-2 lg:mb-4">
+          <content class='block text-black z-10'>
+            <h2 class='text-2xl md:text-3xl lg:text-5xl font-bold mb-2 lg:mb-4'>
               Code repository
             </h2>
-            <p class="w-[90%] md:w-[60%] text-xs md:text-base">
+            <p class='w-[90%] md:w-[60%] text-xs md:text-base'>
               I got (almost) all my code for free view in case if you want to
               get deep on my work as developer
             </p>
           </content>
           <Image
-            alt="octocat"
+            alt='octocat'
             src={Octocat}
-            class="absolute right-0 bottom-0 z-0 w-[80px] sm:w-[140px] md:w-52 md:max-w-[465px]"
+            class='absolute right-0 bottom-0 z-0 w-[80px] sm:w-[140px] md:w-52 md:max-w-[465px]'
           />
         </div>
       </LinkCard>
@@ -96,45 +92,54 @@ import Reading from "@components/Reading/Reading"
       <Experience />
       <AudioPlayer client:only />
       <LinkCard
-        color="bg-[#E9ADC4] dark:bg-[#E3E3E3]"
-        link="https://dribbble.com/josefosaurus"
-      >
-        <div class="flex flex-col justify-center items-center">
+        color='bg-[#E9ADC4] dark:bg-[#E3E3E3]'
+        link='https://dribbble.com/josefosaurus'>
+        <div class='flex flex-col justify-center items-center'>
           <Image
-            alt="dribbble"
+            alt='dribbble'
             src={Dribble}
-            class="w-14 h-14 md:w-20 md:h-20 mb-6"
+            class='w-14 h-14 md:w-20 md:h-20 mb-6'
           />
-          <p class="text-text text-base md:text-2xl">
+          <p class='text-text text-base md:text-2xl'>
             <strong>16</strong> shots
           </p>
         </div>
       </LinkCard>
-      <LinkCard color="bg-[#005BBF]" link="mailto:hola@joseavila.dev">
-        <div class="flex flex-col justify-center items-center">
-          <Image alt="mail" src={Mail} class="w-14 h-14 md:w-20 md:h-20 mb-6" />
-          <p class="text-white test-base md:text-2xl">contact me</p>
+      <LinkCard
+        color='bg-[#005BBF]'
+        link='mailto:hola@joseavila.dev'>
+        <div class='flex flex-col justify-center items-center'>
+          <Image
+            alt='mail'
+            src={Mail}
+            class='w-14 h-14 md:w-20 md:h-20 mb-6'
+          />
+          <p class='text-white test-base md:text-2xl'>contact me</p>
         </div>
       </LinkCard>
-      <LinkCard color="bg-black" link="https://twitter.com/josefosaurus">
-        <div class="flex flex-col justify-center items-center">
+      <LinkCard
+        color='bg-black'
+        link='https://twitter.com/josefosaurus'>
+        <div class='flex flex-col justify-center items-center'>
           <Image
-            alt="twitter"
+            alt='twitter'
             src={Twitter}
-            class="w-14 h-14 md:w-20 md:h-20 mb-6"
+            class='w-14 h-14 md:w-20 md:h-20 mb-6'
           />
-          <p class="text-white text-2xl">𝕏?</p>
+          <p class='text-white text-2xl'>𝕏?</p>
         </div>
       </LinkCard>
       <Weather client:only />
-      <LinkCard color="bg-accent" link="https://t.ly/DQbCl">
-        <div class="flex flex-col justify-center items-center">
+      <LinkCard
+        color='bg-accent'
+        link='https://t.ly/DQbCl'>
+        <div class='flex flex-col justify-center items-center'>
           <Image
-            alt="linkedin"
+            alt='linkedin'
             src={Download}
-            class="w-14 h-14 md:w-20 md:h-20 mb-6 animate-bounce"
+            class='w-14 h-14 md:w-20 md:h-20 mb-6 animate-bounce'
           />
-          <p class="text-black text-base md:text-2xl">Resume</p>
+          <p class='text-black text-base md:text-2xl'>Resume</p>
         </div>
       </LinkCard>
       <Education />

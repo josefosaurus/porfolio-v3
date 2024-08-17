@@ -1,37 +1,41 @@
 ---
-import { Image } from "astro:assets"
-import Sun from "../assets/images/sun.svg"
-import Moon from "../assets/images/moon.svg"
+import { Image } from 'astro:assets'
+import Sun from '../assets/images/sun.svg'
+import Moon from '../assets/images/moon.svg'
 ---
 
 <div
-  class="themeSwitch flex justify-center items-center bg-blue-200 dark:bg-[#242432] rounded-xl col-span-1 square xs:h-auto xs:square shadow-md hover:shadow-xl hover:scale-105 transition-all"
->
-  <button id="themeSwitch">
+  class='themeSwitch flex justify-center items-center bg-blue-200 dark:bg-[#242432] rounded-xl col-span-1 square xs:h-auto xs:square shadow-md hover:shadow-xl hover:scale-105 transition-all'>
+  <button id='themeSwitch'>
     <figure
-      class="flex flex-row justify-between relative bg-[#87A7F8] dark:bg-[#040E26] w-[60px] md:w-[110px] h-[32px] md:h-[52px] rounded-full p-1 transition"
-    >
+      class='flex flex-row justify-between relative bg-[#87A7F8] dark:bg-[#040E26] w-[60px] md:w-[110px] h-[32px] md:h-[52px] rounded-full p-1 transition'>
       <div
-        class="switch absolute top-0 left-0 dark:right-0 dark:left-[unset] bg-[#D9D9D9] w-[32px] md:w-[52px] h-[32px] md:h-[52px] rounded-full"
-      >
+        class='switch absolute top-0 left-0 dark:right-0 dark:left-[unset] bg-[#D9D9D9] w-[32px] md:w-[52px] h-[32px] md:h-[52px] rounded-full'>
       </div>
-      <Image alt="dark theme hover:wiggle" src={Moon} />
-      <Image alt="light theme hover:wiggle" src={Sun} />
+      <Image
+        alt='dark theme hover:wiggle'
+        src={Moon}
+      />
+      <Image
+        alt='light theme hover:wiggle'
+        src={Sun}
+      />
     </figure>
   </button>
 </div>
 
 <script>
-  import { darkmode } from "@store/store"
-  const themeSwitch = document.getElementById("themeSwitch")
+  import { darkmode } from '@store/store'
+  const themeSwitch = document.getElementById('themeSwitch')
 
   const toggleTheme = () => {
-    const currentTheme = localStorage.getItem("theme")
-    const themeUpdated = currentTheme === "dark"
+    const currentTheme = localStorage.getItem('theme')
+    const themeUpdated = currentTheme === 'dark'
     darkmode.set(!themeUpdated)
-    localStorage.setItem("theme", darkmode.value ? "dark" : "light")
+    localStorage.setItem('theme', darkmode.value ? 'dark' : 'light')
   }
 
   // Add an event listener to the button
-  themeSwitch?.addEventListener("click", toggleTheme)
+  themeSwitch?.addEventListener('click', toggleTheme)
+  themeSwitch?.addEventListener('onload', toggleTheme)
 </script>
