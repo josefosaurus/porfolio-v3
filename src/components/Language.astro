@@ -1,33 +1,63 @@
 ---
-import { Image } from "astro:assets"
-import ES from "../assets/images/es.svg"
-import EN from "../assets/images/en.svg"
+import { Image } from 'astro:assets'
+import ES from '../assets/images/es.svg'
+import EN from '../assets/images/en.svg'
 ---
 
 <div
-  class="language text-white flex flex-col justify-center gap-4 <!-- bg-[#F2994A] --> bg-blue-800 rounded-xl col-span-1 square xs:h-auto xs:square shadow-md hover:shadow-xl transition-all"
->
-  <div class="flex justify-center flags">
-    <!-- <Image alt="Español" src={ES} class="w-[2rem] md:w-[6rem]" /> -->
-    <Image alt="English" src={EN} class="w-[2rem] md:w-[6rem]" />
+  id='langSwitch'
+  class='language text-white flex flex-col justify-center gap-4 <!-- bg-[#F2994A] --> bg-blue-800 rounded-xl col-span-1 square xs:h-auto xs:square shadow-md hover:shadow-xl transition-all'>
+  <div class='flex justify-center flags'>
+    <Image
+      id='flagEsp'
+      alt='Español'
+      src={ES}
+      class='w-[2rem] md:w-[6rem] hidden'
+    />
+    <Image
+      id='flagEng'
+      alt='English'
+      src={EN}
+      class='w-[2rem] md:w-[6rem]'
+    />
   </div>
-  <div class="flex justify-center gap-6">
-    <span>ES</span>
-    <span class="underline">EN</span>
+  <div class='flex justify-center gap-6'>
+    <span id='esp'>ESP</span>
+    <span
+      id='eng'
+      class='underline'
+      >ENG</span
+    >
   </div>
 </div>
 
 <script>
-  // import { language } from "@store/store"
-  // const languageSwitch = document.getElementById("themeSwitch")
+  import { language } from '@store/store'
+  const languageSwitch = document.getElementById('langSwitch')
+  const esp = document.getElementById('esp')
+  const eng = document.getElementById('eng')
+  const flagEsp = document.getElementById('flagEsp')
+  const flagEng = document.getElementById('flagEng')
 
-  // const toggleTheme = () => {
-  //   const currentTheme = localStorage.getItem("lang")
-  //   const langUpdated = currentTheme === "EN"
-  //   language.set(!langUpdated)
-  //   localStorage.setItem("lang", language.value === "EN" ? "EN" : "ES")
-  // }
+  const toggleLanguage = () => {
+    const currentTheme = localStorage.getItem('lang')
+    const langUpdated = currentTheme === 'ES' ? 'ENG' : 'ES'
+    language.set(langUpdated)
+    localStorage.setItem('lang', langUpdated)
 
-  // // Add an event listener to the button
-  // languageSwitch?.addEventListener("click", toggleTheme)
+    if (language.value === 'ENG') {
+      esp?.classList.remove('underline')
+      eng?.classList.add('underline')
+      flagEsp?.classList.add('hidden')
+      flagEng?.classList.remove('hidden')
+    } else {
+      eng?.classList.remove('underline')
+      esp?.classList.add('underline')
+      flagEng?.classList.add('hidden')
+      flagEsp?.classList.remove('hidden')
+    }
+  }
+
+  // Add an event listener to the button
+  languageSwitch?.addEventListener('click', toggleLanguage)
 </script>

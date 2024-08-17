@@ -23,7 +23,6 @@ export const AudioPlayer = ({
         method: "GET",
       })
       const currentTrack = await data.json()
-      console.log("💿", currentTrack.track.items[0].track)
       setStrack(currentTrack.track.items[0].track)
     } catch (error) {
       console.log(error)

@@ -4,12 +4,11 @@ interface Props {
 }
 
 const { title } = Astro.props
-import { ViewTransitions } from "astro:transitions"
 
-import icon from "../assets/images/favicon.svg"
-import Footer from "../components/Footer.astro"
-import { getLangFromUrl } from "../i18n/utils"
-import "../../main.css"
+import icon from '../assets/images/favicon.svg'
+import Footer from '../components/Footer.astro'
+import { getLangFromUrl } from '../i18n/utils'
+import '../../main.css'
 
 const lang = getLangFromUrl(Astro.url)
 ---
@@ -17,69 +16,120 @@ const lang = getLangFromUrl(Astro.url)
 <!doctype html>
 <html lang={lang}>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Jose Ávila - Software Developer 💻" />
-    <meta name="viewport" content="width=device-width" />
+    <meta charset='UTF-8' />
+    <meta
+      name='description'
+      content='Jose Ávila - Software Developer 💻'
+    />
+    <meta
+      name='viewport'
+      content='width=device-width'
+    />
 
-    <meta name="keywords" content="Jose Avila, developer, portfolio" />
-    <meta name="author" content="Jose Avila" />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#3498db" />
+    <meta
+      name='keywords'
+      content='Jose Avila, developer, portfolio'
+    />
+    <meta
+      name='author'
+      content='Jose Avila'
+    />
+    <meta
+      name='robots'
+      content='index, follow'
+    />
+    <meta
+      name='theme-color'
+      content='#3498db'
+    />
     <!-- Specify the theme color for mobile browsers -->
 
     <!-- Open Graph Meta Tags (for social media sharing) -->
-    <meta property="og:title" content="Jose Avila - Developer Portfolio" />
     <meta
-      property="og:description"
-      content="Explore the portfolio of Jose Avila, a talented developer."
+      property='og:title'
+      content='Jose Avila - Developer Portfolio'
     />
     <meta
-      property="og:image"
-      content="https://joseavila.dev/_astro/me.7836aee2_Z1M9n7Y.webp"
+      property='og:description'
+      content='Explore the portfolio of Jose Avila, a talented developer.'
+    />
+    <meta
+      property='og:image'
+      content='https://joseavila.dev/_astro/me.7836aee2_Z1M9n7Y.webp'
     />
     <!-- URL to a representative image -->
-    <meta property="og:url" content="https://joseavila.dev" />
-    <meta property="og:type" content="website" />
+    <meta
+      property='og:url'
+      content='https://joseavila.dev'
+    />
+    <meta
+      property='og:type'
+      content='website'
+    />
 
     <!-- Twitter Card Meta Tags (for Twitter sharing) -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@josefosaurus" />
-    <meta name="twitter:title" content="Jose Avila - Developer Portfolio" />
     <meta
-      name="twitter:description"
-      content="Explore the portfolio of Jose Avila, a talented developer."
+      name='twitter:card'
+      content='summary_large_image'
     />
     <meta
-      name="twitter:image"
-      content="https://joseavila.dev/_astro/me.7836aee2_Z1M9n7Y.webp"
+      name='twitter:site'
+      content='@josefosaurus'
+    />
+    <meta
+      name='twitter:title'
+      content='Jose Avila - Developer Portfolio'
+    />
+    <meta
+      name='twitter:description'
+      content='Explore the portfolio of Jose Avila, a talented developer.'
+    />
+    <meta
+      name='twitter:image'
+      content='https://joseavila.dev/_astro/me.7836aee2_Z1M9n7Y.webp'
     />
 
-    <link rel="icon" type="image/svg+xml" href={icon.src} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;900&display=swap"
-      rel="stylesheet"
+      rel='icon'
+      type='image/svg+xml'
+      href={icon.src}
+    />
+    <link
+      rel='preconnect'
+      href='https://fonts.googleapis.com'
+    />
+    <link
+      rel='preconnect'
+      href='https://fonts.gstatic.com'
+      crossorigin
+    />
+    <link
+      href='https://fonts.googleapis.com/css2?family=Lato:wght@300;400;900&display=swap'
+      rel='stylesheet'
     />
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N6XE8TKQ51"
+    <script
+      async
+      src='https://www.googletagmanager.com/gtag/js?id=G-N6XE8TKQ51'
     ></script>
     <script>
       window.dataLayer = window.dataLayer || []
       function gtag() {
         dataLayer.push(arguments)
       }
-      gtag("js", new Date())
+      gtag('js', new Date())
 
-      gtag("config", "G-N6XE8TKQ51")
+      gtag('config', 'G-N6XE8TKQ51')
     </script>
 
-    <meta name="generator" content={Astro.generator} />
+    <meta
+      name='generator'
+      content={Astro.generator}
+    />
     <title>{title}</title>
-    <ViewTransitions />
   </head>
-  <body class="bg-slate-200 dark:bg-background text-text dark:text-white">
-    <slot transition:name="slide" />
+  <body class='bg-slate-200 dark:bg-background text-text dark:text-white'>
+    <slot />
     <Footer />
     <style is:global>
       ::-webkit-scrollbar {
@@ -104,7 +154,7 @@ const lang = getLangFromUrl(Astro.url)
         transition: all;
       }
       html {
-        font-family: "Lato", sans-serif;
+        font-family: 'Lato', sans-serif;
         background-size: 224px;
       }
       code {
@@ -121,33 +171,34 @@ const lang = getLangFromUrl(Astro.url)
     </style>
 
     <script>
-      import { darkmode } from "@store/store"
+      import { darkmode } from '@store/store'
       const wrapper = document.documentElement
 
       const themeHandler = (darkmode: boolean) => {
         if (darkmode) {
-          wrapper.classList.remove("light")
-          wrapper.classList.add("dark")
+          wrapper.classList.remove('light')
+          wrapper.classList.add('dark')
         } else {
-          wrapper.classList.remove("dark")
-          wrapper.classList.add("light")
+          wrapper.classList.remove('dark')
+          wrapper.classList.add('light')
         }
+        console.log(darkmode)
       }
       // Listen to changes in the store, and toggle the theme accordingly
-      darkmode.subscribe((darkmode) => themeHandler(darkmode))
+      darkmode.subscribe(darkmode => themeHandler(darkmode))
 
       if (
-        localStorage.theme === "dark" ||
-        (!("theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
       ) {
-        wrapper.classList.remove("light")
-        document.documentElement.classList.add("dark")
-        localStorage.setItem("theme", "dark")
+        wrapper.classList.remove('light')
+        document.documentElement.classList.add('dark')
+        localStorage.setItem('theme', 'dark')
         darkmode.set(true)
       } else {
-        document.documentElement.classList.remove("dark")
-        localStorage.removeItem("theme")
+        document.documentElement.classList.remove('dark')
+        localStorage.removeItem('theme')
         darkmode.set(false)
       }
     </script>
