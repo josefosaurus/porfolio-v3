@@ -1,0 +1,79 @@
+{
+  "NestJS Controller": {
+    "prefix": "nestctrl",
+    "body": [
+      "import { Controller, Get } from '@nestjs/common';",
+      "",
+      "@Controller('${1:some-path}')",
+      "export class ${2:SomeController} {",
+      "  constructor() {}",
+      "",
+      "  @Get()",
+      "  ${3:getSomething}() {",
+      "    ${0}",
+      "  }",
+      "}"
+    ],
+    "description": "Scaffold a minimal NestJS controller with a default GET handler."
+  },
+  "NestJS Service": {
+    "prefix": "nestsvc",
+    "body": [
+      "import { Injectable } from '@nestjs/common';",
+      "",
+      "@Injectable()",
+      "export class ${1:SomeService} {",
+      "  constructor(${2}) {}",
+      "",
+      "  ${0}",
+      "}"
+    ],
+    "description": "Scaffold a minimal NestJS service class with an injectable constructor."
+  },
+  "NestJS Module": {
+    "prefix": "nestmod",
+    "body": [
+      "import { Module } from '@nestjs/common';",
+      "",
+      "@Module({",
+      "  imports: [${1}],",
+      "  controllers: [${2}],",
+      "  providers: [${3}],",
+      "  exports: [${4:${3}}],",
+      "})",
+      "export class ${5:SomeModule} {}"
+    ],
+    "description": "Scaffold a NestJS module with configurable imports/controllers/providers." 
+  },
+  "NestJS DTO": {
+    "prefix": "nestdto",
+    "body": [
+      "import { ApiProperty } from '@nestjs/swagger';",
+      "import { IsString } from 'class-validator';",
+      "",
+      "export class ${1:SomeDto} {",
+      "  @ApiProperty()",
+      "  @IsString()",
+      "  ${2:property}: string;",
+      "}",
+      ""
+    ],
+    "description": "Create a DTO with Swagger and class-validator decorators."
+  },
+  "NestJS Middleware": {
+    "prefix": "nestmid",
+    "body": [
+      "import { Injectable, NestMiddleware } from '@nestjs/common';",
+      "import { Request, Response, NextFunction } from 'express';",
+      "",
+      "@Injectable()",
+      "export class ${1:SomeMiddleware} implements NestMiddleware {",
+      "  use(req: Request, res: Response, next: NextFunction) {",
+      "    ${0}",
+      "    next();",
+      "  }",
+      "}"
+    ],
+    "description": "Scaffold a NestJS middleware implementing NestMiddleware interface."
+  }
+}
