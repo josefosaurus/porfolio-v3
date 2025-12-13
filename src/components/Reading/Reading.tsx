@@ -7,7 +7,6 @@ interface Article {
   resolved_url: string
   resolved_title: string
   domain_metadata: { name: string }
-  listen_duration_estimate: string
   top_image_url: string
 }
 
@@ -25,7 +24,7 @@ export const Reading = ({
     try {
       const response = await fetch(pocketUrl)
       const data = await response.json()
-      setArticles(data.result)
+      setArticles(data.data)
       return
     } catch (err) {
       console.log("🤌🏽 boluuuudo", err)
@@ -72,7 +71,7 @@ export const Reading = ({
                     {item.resolved_title}
                   </strong>
                   <br />
-                  {item.domain_metadata?.name} -{item.listen_duration_estimate}
+                  {item.domain_metadata?.name}
                   mins
                 </p>
 

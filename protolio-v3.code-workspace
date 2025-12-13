@@ -4,7 +4,7 @@
       "path": "."
     },
     {
-      "path": "../portfolio_backend"
+      "path": "../portfolio_nest"
     }
   ],
   "settings": {
@@ -21,6 +21,7 @@
       },
       "editor.minimap.enabled": false
     },
-    "alias-resolver.type": "webpack"
+    "alias-resolver.type": "webpack",
+    "conventionalCommits.scopes": ["CI"]
   }
 }
