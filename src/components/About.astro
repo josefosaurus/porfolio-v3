@@ -1,39 +1,35 @@
 ---
-import { Image } from "astro:assets"
-import { getLangFromUrl, useTranslations } from "../i18n/utils"
+import { Image } from 'astro:assets'
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
 
-import Badge from "../assets/images/logo.svg"
-import Bg from "../assets/images/me.png"
+import Badge from '../assets/images/logo.svg'
+import Bg from '../assets/images/me.png'
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 ---
 
 <div
-  class="about flex flex-col justify-between relative overflow-clip bg-[#000000] text-white p-8 md:p-14 h-80 md:h-auto rounded-xl col-span-3 md:col-span-3 md:row-span-2"
->
+  class='about flex flex-col justify-between relative overflow-clip bg-[#000000] text-white p-8 md:p-14 h-80 md:h-auto rounded-xl col-span-3 md:col-span-3 md:row-span-2'>
   <Image
     src={Badge}
-    class="max-w-[3rem] md:w-auto"
-    alt="Jose Avila, software developer"
-    draggable="false"
+    class='max-w-[3rem] md:w-auto'
+    alt='Jose Avila, software developer'
+    draggable='false'
   />
-  <section class="justify-between relative z-10 w-[100%] md:max-w-[70%]">
-    <h1 class="text-xl font-black md:text-4xl">{t("about.title")}</h1>
-    <p class="text-xs md:text-xs lg:text-base">
-      A multifaceted individual whose life revolves around the harmonious blend
-      of code, beats, and profound contemplation. As a software developer,
-      drummer, and philosophy enthusiast, who embodies a unique fusion of
-      creativity and analytical thinking. bringing a symphony of skills and a
-      symposium of ideas, creating a unique harmony that resonates through their
-      work. Whether it's writing elegant code, drumming to the rhythm of life,
-      or pondering the mysteries of existence, approaching each endeavor with
-      passion, precision, and a profound sense of empathy.
+  <section class='justify-between relative z-10 w-[100%] md:max-w-[70%]'>
+    <h1 class='text-xl font-black md:text-4xl'>{t('about.title')}</h1>
+    <p class='text-xs md:text-xs lg:text-base'>
+      A multifaceted software developer, drummer, and philosophy enthusiast who
+      blends creativity with analytical thinking. Passionate about writing
+      elegant code, drumming to life's rhythm, and pondering existence's
+      mysteries. Bringing a unique harmony of skills and ideas to every
+      endeavor.
     </p>
   </section>
   <Image
     src={Bg}
-    alt="Jose Avila"
-    class="absolute right-0 top-0 -z-0 w-[50%]"
-    draggable="false"
+    alt='Jose Avila'
+    class='absolute right-0 top-0 -z-0 w-[50%]'
+    draggable='false'
   />
 </div>
