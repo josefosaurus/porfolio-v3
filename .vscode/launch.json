@@ -2,10 +2,38 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "command": "./node_modules/.bin/astro dev",
+      "name": "Launch Chrome against localhost",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4321",
+      "webRoot": "${workspaceFolder}/src",
+      "sourceMapPathOverrides": {
+        "meteor://💻app/*": "${workspaceFolder}/*"
+      }
+    },
+    {
+      "name": "Attach to Chrome",
+      "type": "chrome",
+      "request": "attach",
+      "url": "http://localhost:4321",
+      "webRoot": "${workspaceFolder}/src",
+      "port": 9222
+    },
+    {
+      "command": "npm run dev",
       "name": "Development server",
       "request": "launch",
       "type": "node-terminal"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Debug Astro App",
+      "configurations": ["Development server", "Launch Chrome against localhost"],
+      "stopAll": true,
+      "presentation": {
+        "order": 1
+      }
     }
   ]
 }

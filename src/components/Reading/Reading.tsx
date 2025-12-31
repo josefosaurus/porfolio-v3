@@ -24,7 +24,9 @@ export const Reading = ({
     try {
       const response = await fetch(pocketUrl)
       const data = await response.json()
-      setArticles(data.data)
+      const dataList = data ? data.data.filter((item, index) => index < 2 && item) : []
+      console.log(dataList)
+      setArticles(dataList)
       return
     } catch (err) {
       console.log("🤌🏽 boluuuudo", err)
