@@ -20,6 +20,27 @@ import AlmostMe from '@assets/images/almost_me.gif'
 import Octocat from '@assets/images/octocat.gif'
 import Education from '@components/Education.astro'
 import Reading from '@components/Reading/Reading'
+import Badge from '@assets/images/badge.png'
+import AntBadge from '@assets/images/anthropic_logo.jpg'
+
+// Mock data for Education component
+const educationData = [{
+  image: Badge,
+  link: 'https://platzi.com/p/Josefosaurus/curso/4623-course/diploma/detalle/',
+  title: 'Audiocurso de Frameworks y Arquitecturas Frontend: Casos de Estudio',
+  institution: 'Platzi',
+  year: '2023',
+  theme: 'platzi' as const,
+},
+{
+  image: AntBadge,
+  link: 'https://verify.skilljar.com/c/c76yzitk2qon',
+  title: 'Claude Code in Action',
+  institution: 'Anthropic',
+  year: '2025',
+  theme: 'default' as const,
+},
+]
 ---
 
 <Layout title='Jose Avila - Software Developer 💻'>
@@ -142,7 +163,7 @@ import Reading from '@components/Reading/Reading'
           <p class='text-black text-base md:text-2xl'>Resume</p>
         </div>
       </LinkCard>
-      <Education />
+      <Education {...educationData[1]} />
       <Reading client:only />
     </div>
   </main>

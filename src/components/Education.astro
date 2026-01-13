@@ -1,31 +1,57 @@
 ---
 import { Image } from "astro:assets"
 
-import Badge from "../assets/images/badge.png"
+interface Props {
+  image: ImageMetadata
+  link: string
+  title: string
+  institution: string
+  year: string
+  theme?: 'platzi' | 'default'
+}
+
+const { image, link, title, institution, year, theme = 'default' } = Astro.props
+
+// Theme styles
+const themes = {
+  platzi: {
+    bg: 'bg-[#96C93E]',
+    titleColor: 'text-white',
+    textColor: 'text-white',
+  },
+  default: {
+    bg: 'bg-white dark:bg-gray-100',
+    titleColor: 'text-red-600 dark:text-red-500',
+    textColor: 'text-gray-900 dark:text-gray-800',
+  },
+}
+
+const currentTheme = themes[theme]
 ---
 
 <section
   id="education"
-  class="education bg-[#96C93E] relative flex flex-col items-center justify-center rounded-xl col-span-2 md:col-span-2 row-span-1 overflow-clip p-4 shadow-md hover:shadow-xl hover:scale-105 transition-all"
+  class={`education ${currentTheme.bg} relative flex flex-col rounded-xl col-span-2 md:col-span-2 row-span-1 overflow-clip p-4 shadow-md hover:shadow-xl hover:scale-105 transition-all`}
 >
+  <h3 class="text-[10px] md:text-xs text-gray-600 dark:text-gray-500 uppercase tracking-wider font-medium mb-2 opacity-60">Latest Certification</h3>
   <a
     id="canvas"
-    href="https://platzi.com/p/Josefosaurus/curso/4623-course/diploma/detalle/"
+    href={link}
     target="_blank"
-    class="flex justify-between gap-2 w-[100%]"
+    class="flex items-center gap-3 md:gap-4 w-[100%] flex-1"
   >
     <Image
-      src={Badge}
-      alt="code error"
-      class="h-[50px] md:h-[8rem] w-[50px] md:w-[8rem]"
+      src={image}
+      alt={title}
+      class="h-[50px] md:h-[8rem] w-[50px] md:w-[8rem] flex-shrink-0"
     />
-    <div>
+    <div class="flex-1">
       <h2
-        class="text-xs md:text-xl max-w-[unset] md:max-w-[unset] font-bold text-white text-ellipsis"
+        class={`text-xs md:text-xl max-w-[unset] md:max-w-[unset] font-bold ${currentTheme.titleColor} text-ellipsis`}
       >
-        Audiocurso de Frameworks y Arquitecturas Frontend: Casos de Estudio
+        {title}
       </h2>
-      <p>Platzi - 2023</p>
+      <p class={currentTheme.textColor}>{institution} - {year}</p>
     </div>
   </a>
 </section>
