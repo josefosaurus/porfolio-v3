@@ -2,20 +2,28 @@
 import { Image } from "astro:assets"
 
 interface Props {
-  image: ImageMetadata
-  link: string
-  title: string
-  institution: string
-  year: string
-  theme?: 'platzi' | 'default'
+  educationData: Array<{
+    image: ImageMetadata
+    link: string
+    title: string
+    institution: string
+    year: string
+    theme?: 'platzi' | 'midudev' | 'default'
+  }>
 }
 
-const { image, link, title, institution, year, theme = 'default' } = Astro.props
+const { educationData } = Astro.props
 
+// TODO: add the midudev.com style of card
 // Theme styles
 const themes = {
   platzi: {
     bg: 'bg-[#96C93E]',
+    titleColor: 'text-white',
+    textColor: 'text-white',
+  },
+  midudev: {
+    bg: 'bg-[#020617]',
     titleColor: 'text-white',
     textColor: 'text-white',
   },
@@ -25,44 +33,118 @@ const themes = {
     textColor: 'text-gray-900 dark:text-gray-800',
   },
 }
-
-const currentTheme = themes[theme]
 ---
 
 <section
   id="education"
-  class={`education ${currentTheme.bg} relative flex flex-col rounded-xl col-span-2 md:col-span-2 row-span-1 overflow-clip p-4 shadow-md hover:shadow-xl hover:scale-105 transition-all`}
+  class="education bg-white dark:bg-gray-100 relative flex flex-col rounded-xl col-span-2 md:col-span-2 row-span-1 overflow-clip shadow-md hover:shadow-xl hover:scale-105 transition-all"
+  role="region"
+  aria-label="Certificate carousel"
 >
-  <h3 class="text-[10px] md:text-xs text-gray-600 dark:text-gray-500 uppercase tracking-wider font-medium mb-2 opacity-60">Latest Certification</h3>
-  <a
-    id="canvas"
-    href={link}
-    target="_blank"
-    class="flex items-center gap-3 md:gap-4 w-[100%] flex-1"
-  >
-    <Image
-      src={image}
-      alt={title}
-      class="h-[50px] md:h-[8rem] w-[50px] md:w-[8rem] flex-shrink-0"
-    />
-    <div class="flex-1">
-      <h2
-        class={`text-xs md:text-xl max-w-[unset] md:max-w-[unset] font-bold ${currentTheme.titleColor} text-ellipsis`}
-      >
-        {title}
-      </h2>
-      <p class={currentTheme.textColor}>{institution} - {year}</p>
+  <h3 class="text-[10px] absolute top-2 left-2 z-10 md:text-xs text-gray-600 dark:text-gray-500 uppercase tracking-wider font-medium mb-2 opacity-60 px-4 pt-4">
+    Latest Certification
+  </h3>
+
+  <!-- Swiper Container -->
+  <div class="swiper educationSwiper h-full w-[-webkit-fill-available]">
+    <div class="swiper-wrapper">
+      {educationData.map((cert) => {
+        const currentTheme = themes[cert.theme || 'default']
+        return (
+          <div class={`swiper-slide w-100 h-full !flex flex-col p-4 justify-center ${currentTheme.bg}`}>
+            <a
+              href={cert.link}
+              target="_blank"
+              class="certificate-card flex gap-4 items-center"
+            >
+              <Image
+                src={cert.image}
+                alt={cert.title}
+                class="h-[50px] md:h-[8rem] w-[50px] md:w-[8rem] flex-shrink-0"
+              />
+              <div class="flex-1">
+                <h2 class={`text-xs md:text-xl font-bold ${currentTheme.titleColor} line-clamp-2 overflow-hidden text-ellipsis`}>
+                  {cert.title}
+                </h2>
+                <p class={currentTheme.textColor}>
+                  {cert.institution} - {cert.year}
+                </p>
+              </div>
+            </a>
+          </div>
+        )
+      })}
     </div>
-  </a>
+    <!-- Pagination dots -->
+    <div class="swiper-pagination absolute bottom-2 left-0 right-0 z-10"></div>
+  </div>
 </section>
 
 <script>
-  import JSConfetti from "js-confetti"
-  const jsConfetti = new JSConfetti()
-  const confetiTrigger = () => {
-    jsConfetti.addConfetti()
-  }
-  const trigger = document.getElementById("education")
+  import Swiper from 'swiper'
+  import { Autoplay, Pagination } from 'swiper/modules'
+  import 'swiper/css'
+  import 'swiper/css/pagination'
+  import JSConfetti from 'js-confetti'
 
-  trigger?.addEventListener("mouseenter", () => confetiTrigger())
+  // Initialize Swiper
+  const swiper = new Swiper('.educationSwiper', {
+    modules: [Autoplay, Pagination],
+
+    // Auto-play configuration
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+    },
+
+    // Pagination dots
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      dynamicBullets: false,
+    },
+
+    // Touch/swipe settings
+    touchRatio: 1,
+    threshold: 10,
+
+    // Loop through slides
+    loop: true,
+
+    // Transition effect
+    speed: 300,
+    effect: 'slide',
+
+    // Responsive
+    slidesPerView: 1,
+    spaceBetween: 0,
+  })
+
+  // Confetti on hover (existing functionality)
+  const jsConfetti = new JSConfetti()
+  const certificateCards = document.querySelectorAll('.certificate-card')
+
+  certificateCards.forEach(card => {
+    card.addEventListener('ondragend', () => {
+      jsConfetti.addConfetti()
+    })
+  })
 </script>
+
+<style>
+  /* Pagination bullets styling */
+  .educationSwiper .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 1;
+    transition: all 0.3s ease;
+  }
+
+  .educationSwiper .swiper-pagination-bullet-active {
+    width: 24px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.9);
+  }
+</style>
