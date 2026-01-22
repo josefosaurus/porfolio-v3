@@ -10,6 +10,7 @@ import Experience from '@components/Experience.astro'
 import Skills from '@components/Skills.astro'
 import { Weather } from '@components/Weather/Weather'
 import { AudioPlayer } from '@components/audioPlayer/AudioPlayer'
+import { Education } from '@components/Education/Education'
 
 import LinkedIn from '@assets/images/linkedin.svg'
 import Download from '@assets/images/download.svg'
@@ -18,40 +19,7 @@ import Dribble from '@assets/images/dribbble.svg'
 import Mail from '@assets/images/mail.svg'
 import AlmostMe from '@assets/images/almost_me.gif'
 import Octocat from '@assets/images/octocat.gif'
-import Education from '@components/Education.astro'
 import Reading from '@components/Reading/Reading'
-import Badge from '@assets/images/badge.png'
-import MiduBadge from '@assets/images/midu.svg'
-import AntBadge from '@assets/images/anthropic_logo.jpg'
-
-// Mock data for Education component
-const educationData = [
-  {
-  image: MiduBadge,
-  link: 'https://certificados.midudev.com/f9357753-608c-4210-9b15-4cf8db414ebd.pdf',
-  title: 'Python desde cero',
-  institution: 'Midudev',
-  year: '2026',
-  theme: 'midudev' as const,
-},
-{
-  image: Badge,
-  link: 'https://platzi.com/p/Josefosaurus/curso/4623-course/diploma/detalle/',
-  title: 'Audiocurso de Frameworks y Arquitecturas Frontend: Casos de Estudio',
-  institution: 'Platzi',
-  year: '2023',
-  theme: 'platzi' as const,
-},
-{
-  image: AntBadge,
-  link: 'https://verify.skilljar.com/c/c76yzitk2qon',
-  title: 'Claude Code in Action',
-  institution: 'Anthropic',
-  year: '2025',
-  theme: 'default' as const,
-},
-
-]
 ---
 
 <Layout title='Jose Avila - Software Developer 💻'>
@@ -174,7 +142,7 @@ const educationData = [
           <p class='text-black text-base md:text-2xl'>Resume</p>
         </div>
       </LinkCard>
-      <Education educationData={educationData} />
+      <Education client:only />
       <Reading client:only />
     </div>
   </main>
