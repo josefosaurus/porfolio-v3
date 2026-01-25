@@ -40,7 +40,7 @@ export const Education = ({
     setLoading(true)
 
     try {
-      const response = await fetch('/api/certificates')
+      const response = await fetch(import.meta.env.PUBLIC_CERTIFICATES_API)
       const data = await response.json()
       setCertificates(data)
     } catch (error) {

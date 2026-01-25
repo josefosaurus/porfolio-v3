@@ -23,10 +23,8 @@ npm run astro           # Run Astro CLI commands
 
 ### Framework & Rendering
 - **Astro 3.6.1** with Islands Architecture - static-first with selective React hydration for interactive components
-- React components use `client:only` directive for API-dependent widgets (AudioPlayer, Weather, Reading)
-  - This ensures they only render on the client side where they can fetch from APIs
+- React components (`client:*` directives) are used only for dynamic features requiring state management
 - Most UI is server-rendered Astro components for optimal performance
-- Astro components can include `<script>` tags for client-side interactivity (e.g., Swiper initialization in Education.astro)
 
 ### State Management
 - **Nanostores** (`src/store/store.ts`) manages global state:
@@ -77,20 +75,14 @@ Defined in `tsconfig.json`:
 
 ### Styling
 - Tailwind CSS for utility-first styling
-- Dark mode implemented via Tailwind's `dark:` variant (class-based) + nanostore state
-- Custom color palette defined in `tailwind.config.cjs`:
-  - `background`: #1F1F1F
-  - `accent`: #50BF97 (teal/green)
-  - `text`: #828282 (gray)
-- Custom `wiggle` animation keyframe
+- Dark mode implemented via Tailwind's `dark:` variant + nanostore state
 - Global styles in `main.css`
 - Responsive breakpoints: mobile-first, then `md:`, `xl:`
 
 ### Content Structure
 - **Blog posts**: Markdown files in `src/pages/posts/` with frontmatter
 - **Static assets**: `public/` directory
-- **Images**: `src/assets/images/` (processed by Astro, imported in TypeScript)
-- **Certificate data**: Defined inline in `src/pages/index.astro` as `educationData` array
+- **Images**: `src/assets/images/` (processed by Astro)
 
 ## Environment Variables
 
@@ -101,8 +93,6 @@ PUBLIC_SPOTIFY_API         # Backend endpoint for Spotify data
 PUBLIC_POCKET_API          # Backend endpoint for Raindrop.io articles
 PUBLIC_OPEN_WEATHER_API    # OpenWeather API endpoint
 ```
-
-**Note:** In `.github/workflows/deploy.yml`, the variable is named `OPEN_WEATHER_API` (without PUBLIC_ prefix) but gets mapped to `PUBLIC_OPEN_WEATHER_API` environment variable.
 
 For local development, create `.env.local` (gitignored).
 
@@ -129,15 +119,6 @@ When working with API integrations:
 - Log errors to console for debugging
 - Follow existing patterns in AudioPlayer/Weather/Reading components
 - API URLs come from environment variables (never hardcode)
-
-## Dependencies & Libraries
-
-Key dependencies beyond core framework:
-- **Swiper.js** (v12): Carousel/slider functionality for Education component
-- **js-confetti**: Celebration effects on certificate interactions
-- **dayjs**: Date/time utilities
-- **nanostores**: Minimal state management (dark mode, language)
-- **vite-plugin-svgr**: Import SVGs as React components
 
 ## Testing & Quality
 
