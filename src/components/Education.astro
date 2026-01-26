@@ -4,6 +4,7 @@ import { Image } from "astro:assets"
 interface Props {
   educationData: Array<{
     image: ImageMetadata
+    badge?: ImageMetadata
     link: string
     title: string
     institution: string
@@ -58,9 +59,9 @@ const themes = {
               class="certificate-card flex gap-4 items-center"
             >
               <Image
-                src={cert.image}
-                alt={cert.title}
-                class="h-[50px] md:h-[8rem] w-[50px] md:w-[8rem] flex-shrink-0"
+                src={cert.badge || cert.image}
+                alt={cert.institution}
+                class="h-[50px] md:h-[8rem] w-[50px] md:w-[8rem] flex-shrink-0 object-contain"
               />
               <div class="flex-1">
                 <h2 class={`text-xs md:text-xl font-bold ${currentTheme.titleColor} line-clamp-2 overflow-hidden text-ellipsis`}>

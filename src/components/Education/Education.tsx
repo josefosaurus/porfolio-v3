@@ -133,9 +133,9 @@ export const Education = ({
                     className="certificate-card flex gap-4 items-center"
                   >
                     <img
-                      src={cert.image}
-                      alt={cert.title}
-                      className="h-[50px] md:h-[8rem] w-[50px] md:w-[8rem] flex-shrink-0"
+                      src={cert.badge || cert.image}
+                      alt={cert.institution}
+                      className="h-[50px] md:h-[8rem] w-[50px] md:w-[8rem] flex-shrink-0 object-contain"
                     />
                     <div className="flex-1">
                       <h2

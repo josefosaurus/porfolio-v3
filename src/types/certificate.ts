@@ -1,5 +1,6 @@
 export interface Certificate {
   image: string
+  badge?: string
   link: string
   title: string
   institution: string
