@@ -1,4 +1,9 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+
 const getAge = (birthYear: number) => {
   const currentYear = new Date().getFullYear()
   const age = currentYear - birthYear
@@ -13,8 +18,8 @@ const age = getAge(1985)
 >
   <p class="text-xs md:text-xl lg:text-4xl font-bold text-center text-black">
     🎂 <br />
-    {age} Years old <br />
+    {age} {t('info.yearsOld')} <br />
      📍<br />
-     Santiago, Chile
+     {t('info.location')}
   </p>
 </div>

@@ -1,18 +1,63 @@
 export const languages = {
   en: 'English',
-  fr: 'Français',
-};
+  es: 'Español',
+} as const;
 
 export const defaultLang = 'en';
 
+export type Lang = keyof typeof languages;
+
 export const ui = {
   en: {
+    // About section
     'about.title': "Hi, I'm Jose Ávila",
-    'about.desc': 'AboFull-Stack developer with years of experience in Web development. Proficient in HTML, CSS, and PHP. Experience with JavaScript frameworks and mobile such as React Native and Flutter. Strong understanding of user experience design. Excellent problem-solving and debugging skills. Ability to work independently and as part of a team. Passionate about learning new technologies and solving challenging problems.',
-    'nav.twitter': 'Twitter',
+    'about.desc': "Developer and former designer who enjoys building things, hitting drums, and thinking about life's big questions. Always eager to learn something new and figure out how things work.",
+
+    // Links and navigation
+    'nav.profile': 'Profile',
+    'nav.resume': 'Resume',
+    'nav.contact': 'contact me',
+
+    // Lab section
+    'lab.title': 'Lab',
+    'lab.desc': "Here you can view some of my personal work and experiments, and why not? some fails",
+
+    // Code repository section
+    'repo.title': 'Code repository',
+    'repo.desc': 'I got (almost) all my code for free view in case if you want to get deep on my work as developer',
+
+    // Basic info
+    'info.yearsOld': 'Years old',
+    'info.location': 'Santiago, Chile',
+
+    // Dribbble
+    'dribbble.shots': 'shots',
   },
   es: {
-    'about.title': "Hola, soy Jose Ávila",
-    'about.desc': 'Desarrollador AboFull-Stack con años de experiencia en desarrollo Web. Competente en HTML, CSS y PHP. Experiencia con frameworks JavaScript y móviles como React Native y Flutter. Fuerte conocimiento del diseño de experiencia de usuario. Excelentes habilidades de resolución de problemas y depuración. Capacidad para trabajar de forma independiente y como parte de un equipo. Apasionado por aprender nuevas tecnologías y resolver problemas desafiantes.',
+    // About section
+    'about.title': 'Hola, soy Jose Ávila',
+    'about.desc': 'Desarrollador y ex-diseñador que disfruta construyendo cosas, tocando batería y pensando en las grandes preguntas de la vida. Siempre dispuesto a aprender algo nuevo y descubrir cómo funcionan las cosas.',
+
+    // Links and navigation
+    'nav.profile': 'Perfil',
+    'nav.resume': 'Currículum',
+    'nav.contact': 'contáctame',
+
+    // Lab section
+    'lab.title': 'Laboratorio',
+    'lab.desc': 'Aquí puedes ver algunos de mis trabajos personales y experimentos, y ¿por qué no? algunos fallos',
+
+    // Code repository section
+    'repo.title': 'Repositorio de código',
+    'repo.desc': 'Tengo (casi) todo mi código disponible para ver, por si quieres profundizar en mi trabajo como desarrollador',
+
+    // Basic info
+    'info.yearsOld': 'Años',
+    'info.location': 'Santiago, Chile',
+
+    // Dribbble
+    'dribbble.shots': 'shots',
   },
 } as const;
+
+export type TranslationKey = keyof typeof ui[typeof defaultLang];
