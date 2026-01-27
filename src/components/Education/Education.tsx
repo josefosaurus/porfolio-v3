@@ -107,12 +107,12 @@ export const Education = ({
       </h3>
 
       {loading ? (
-        <div className="flex items-center justify-center h-full p-4">
-          <div className="animate-pulse flex flex-col items-center space-y-4">
-            <div className="w-16 h-16 bg-gray-300 rounded"></div>
-            <div className="space-y-2">
-              <div className="h-4 bg-gray-300 rounded w-48"></div>
-              <div className="h-3 bg-gray-200 rounded w-32"></div>
+        <div className="flex items-center h-full p-4">
+          <div className="animate-pulse flex gap-4 items-center w-full">
+            <div className="h-[50px] md:h-[8rem] w-[50px] md:w-[8rem] flex-shrink-0 bg-gray-300 rounded"></div>
+            <div className="flex-1 space-y-2">
+              <div className="h-4 md:h-6 bg-gray-300 rounded w-3/4"></div>
+              <div className="h-3 md:h-4 bg-gray-200 rounded w-1/2"></div>
             </div>
           </div>
         </div>
