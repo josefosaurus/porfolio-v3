@@ -8,4 +8,11 @@ import react from "@astrojs/react"
 export default defineConfig({
   site: "https://joseavila.dev",
   integrations: [tailwind(), react(), svgr()],
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "es"],
+    routing: {
+      prefixDefaultLocale: true,
+    },
+  },
 })

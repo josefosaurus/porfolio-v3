@@ -4,6 +4,7 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils'
 
 import Badge from '../assets/images/logo.svg'
 import Bg from '../assets/images/me.png'
+
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 ---
@@ -19,9 +20,7 @@ const t = useTranslations(lang)
   <section class='justify-between relative z-10 w-[100%] md:max-w-[70%]'>
     <h1 class='text-xl font-black md:text-4xl'>{t('about.title')}</h1>
     <p class='text-xs md:text-xs lg:text-base'>
-      Developer and former designer who enjoys building things, hitting drums,
-      and thinking about life's big questions. Always eager to learn something
-      new and figure out how things work.
+      {t('about.desc')}
     </p>
   </section>
   <Image

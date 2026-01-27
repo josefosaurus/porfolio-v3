@@ -1,0 +1,115 @@
+---
+import dayjs from 'dayjs'
+import Layout from '@layouts/BlogLayout.astro'
+import { Image } from 'astro:assets'
+import PostCard from '@components/blog/PostCard.astro'
+import { languages } from '../../i18n/ui'
+import { isValidLang, getLangFromUrl } from '../../i18n/utils'
+
+import Kitty from '@assets/images/404.svg'
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params;
+
+if (!isValidLang(lang)) {
+  return Astro.redirect('/en/blog');
+}
+
+const allPosts = await Astro.glob('../../pages/posts/*.md')
+---
+
+<Layout title='Jose Avila - Blog 💻'>
+  <section class='container grid grid-cols-3 md:grid-cols-4 gap-4'>
+    {
+      !allPosts ? (
+        <Image
+          src={Kitty}
+          alt='not found'
+          class='col-span-4 mx-auto'
+          draggable='false'
+        />
+      ) : (
+        allPosts.map((post, index) => {
+          if (index === 0) {
+            return (
+              <PostCard
+                cols='col-span-3'
+                rows='row-span-2 min-h-[300px]'
+                square={false}
+                link={`/${lang}/posts/${post.frontmatter.slug}`}
+                title={post.frontmatter.title}
+                background={post.frontmatter.cover}
+                createdAt={`${dayjs(post.frontmatter.pubDate, ['DD-MM-YYYY'])}`}
+                tags={post.frontmatter.tags}
+              />
+            )
+          } else if (index === 1 || index == 2) {
+            return (
+              <PostCard
+                cols='col-span-1 md:-mt-20'
+                title={post.frontmatter.title}
+                link={`/${lang}/posts/${post.frontmatter.slug}`}
+                background={post.frontmatter.cover}
+                createdAt={`${dayjs(post.frontmatter.pubDate, ['DD-MM-YYYY'])}`}
+                tags={post.frontmatter.tags}
+              />
+            )
+          } else {
+            return (
+              <PostCard
+                title={post.frontmatter.title}
+                link={`/${lang}/posts/${post.frontmatter.slug}`}
+                background={post.frontmatter.herocover}
+                createdAt={`${dayjs(post.frontmatter.pubDate, ['DD-MM-YYYY'])}`}
+                tags={post.frontmatter.tags}
+              />
+            )
+          }
+        })
+      )
+    }
+  </section>
+  <style>
+    .text-mainColor {
+      color: #1abb9c;
+    }
+
+    .bg-black {
+      background-color: #222222;
+    }
+
+    .bg-mainColor {
+      background-color: #1abb9c;
+    }
+
+    .shadow-inner {
+      box-shadow: inset 0px 0px 8px rgba(50, 50, 50, 1);
+    }
+
+    .animate-load {
+      animation: load 3s linear infinite;
+    }
+
+    .animation-delay-2s {
+      animation-delay: 2s;
+    }
+
+    @keyframes load {
+      0% {
+        width: 0%;
+      }
+      50% {
+        width: 100%;
+      }
+      100% {
+        width: 0%;
+        float: right;
+      }
+    }
+  </style>
+</Layout>
