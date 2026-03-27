@@ -1,11 +1,11 @@
 {
   "folders": [
     {
-      "path": "."
+      "path": ".",
     },
     {
-      "path": "../portfolio_nest"
-    }
+      "path": "../portfolio_nest",
+    },
   ],
   "settings": {
     "[markdown]": {
@@ -17,11 +17,16 @@
       "editor.quickSuggestions": {
         "comments": "off",
         "strings": "off",
-        "other": "off"
+        "other": "off",
       },
-      "editor.minimap.enabled": false
+      "editor.minimap.enabled": false,
     },
     "alias-resolver.type": "webpack",
-    "conventionalCommits.scopes": ["CI"]
-  }
+    "conventionalCommits.scopes": ["CI"],
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit",
+    },
+  },
 }
