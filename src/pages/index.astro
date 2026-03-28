@@ -1,6 +1,21 @@
 ---
-import { defaultLang } from '../i18n/ui'
+import { languages, defaultLang } from '../i18n/ui'
 
-// Redirect to the default language
-return Astro.redirect(`/${defaultLang}`)
+const supportedLangs = Object.keys(languages)
 ---
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0;url=/${defaultLang}`} />
+    <script is:inline define:vars={{ supportedLangs, defaultLang }}>
+      const browserLang = (navigator.language || navigator.userLanguage || defaultLang)
+        .slice(0, 2)
+        .toLowerCase()
+      const lang = supportedLangs.includes(browserLang) ? browserLang : defaultLang
+      window.location.replace('/' + lang)
+    </script>
+  </head>
+  <body></body>
+</html>
